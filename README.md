@@ -24,6 +24,20 @@
 - 内容用 Markdown 管理，非技术背景也容易维护。
 - 不接入评论、登录、数据库，减少安全风险。
 
+### 日常修改内容
+
+日常只需要优先编辑 `content.js`，不用改 `index.html`。
+
+- `name`：姓名或主页显示名。
+- `title`：首页大标题。
+- `subtitle`：首页简介。
+- `contact`：联系邮箱或其他公开联系方式。
+- `notes`：最近想法。
+- `articles`：精选文章。
+- `projects`：AI vibe coding 项目。
+
+如果只是改文字、日期、文章标题、项目介绍，基本都在 `content.js` 完成。
+
 ### 增长阶段
 
 - 用 Git 管理内容版本。

@@ -14,8 +14,8 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="返回首页">
-        <span class="brand-mark">LY</span>
-        <span>林予安</span>
+        <span class="brand-mark" data-content="initials">LY</span>
+        <span data-content="name">林予安</span>
       </a>
       <nav class="nav" aria-label="主导航">
         <a href="#notes">想法</a>
@@ -29,8 +29,8 @@
       <section class="hero section-band">
         <div class="hero-copy">
           <p class="kicker">Finance · AI · Clear Thinking</p>
-          <h1>把财务判断、日常观察和 AI 小实验，整理成可复用的个人知识资产。</h1>
-          <p class="lead">
+          <h1 data-content="title">把财务判断、日常观察和 AI 小实验，整理成可复用的个人知识资产。</h1>
+          <p class="lead" data-content="subtitle">
             我关注企业经营、财务分析、效率工具和 AI vibe coding。这里记录长期问题、短想法、文章和能真正帮自己省时间的小项目。
           </p>
           <div class="hero-actions">
@@ -38,7 +38,7 @@
             <a class="button ghost" href="#projects">查看项目</a>
           </div>
         </div>
-        <aside class="signal-panel" aria-label="主页概览">
+        <aside class="signal-panel" aria-label="主页概览" data-list="stats">
           <div>
             <span class="metric">42</span>
             <span class="label">篇笔记</span>
@@ -60,7 +60,7 @@
             <p class="kicker">Thinking Log</p>
             <h2>最近想法</h2>
           </div>
-          <div class="note-list">
+          <div class="note-list" data-list="notes">
             <article class="note-item">
               <time datetime="2026-04-20">2026.04.20</time>
               <h3>财务分析的价值，不只是解释过去</h3>
@@ -96,7 +96,7 @@
             </div>
             <div>
               <dt>联系</dt>
-              <dd>hello@example.com</dd>
+              <dd data-content="contact">hello@example.com</dd>
             </div>
           </dl>
         </section>
@@ -107,7 +107,7 @@
           <p class="kicker">Selected Writing</p>
           <h2>精选文章</h2>
         </div>
-        <div class="article-row">
+        <div class="article-row" data-list="articles">
           <article class="article-card">
             <span class="tag">财务分析</span>
             <h3>从现金流视角看一家公司的经营韧性</h3>
@@ -134,7 +134,7 @@
           <p class="kicker">AI Vibe Coding</p>
           <h2>项目陈列</h2>
         </div>
-        <div class="project-grid">
+        <div class="project-grid" data-list="projects">
           <article class="project-card">
             <div class="project-icon" aria-hidden="true">↗</div>
             <h3>经营分析摘要生成器</h3>
@@ -171,6 +171,7 @@
       <span>Built as a static, privacy-first personal site.</span>
     </footer>
 
+    <script src="./content.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
