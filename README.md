@@ -55,6 +55,19 @@
   - GitHub Pages 可作为备份，但国内访问不稳定
 - 如绑定自定义域名，国内服务器或 CDN 通常需要 ICP 备案。
 
+## GitHub Pages 部署
+
+当前仓库适合用 GitHub Pages 的“Deploy from a branch”方式部署。
+
+1. 确认代码已经推送到 `https://github.com/justinwujunhao/justinspage`。
+2. 打开仓库页面，进入 `Settings`。
+3. 在左侧 `Code and automation` 里选择 `Pages`。
+4. 在 `Build and deployment` 中，把 `Source` 设为 `Deploy from a branch`。
+5. `Branch` 选择 `main`，目录选择 `/(root)`，然后点击 `Save`。
+6. 等待几分钟后访问 `https://justinwujunhao.github.io/justinspage/`。
+
+GitHub Pages 发布有时需要等待一段时间；如果页面暂时打不开，先等几分钟再刷新。
+
 ## 安全建议
 
 - 静态优先：没有后台登录面，攻击面最小。
