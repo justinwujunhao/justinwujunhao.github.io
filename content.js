@@ -1,27 +1,23 @@
 window.siteContent = {
-  name: "林予安",
-  initials: "LY",
+  name: "Justin Wu",
+  initials: "JW",
   title: "把财务判断、日常观察和 AI 小实验，整理成可复用的个人知识资产。",
   subtitle:
-    "我关注企业经营、财务分析、效率工具和 AI vibe coding。这里记录长期问题、短想法、文章和能真正帮自己省时间的小项目。",
-  contact: "hello@example.com",
-  stats: [
-    { value: "42", label: "篇笔记" },
-    { value: "9", label: "个 AI 项目" },
-    { value: "3", label: "个长期专题" },
-  ],
+    "我关注企业经营、会计准则、效率工具和 Vibe Coding。这里记录长期问题、短想法、文章和能真正帮自己省时间的小项目。",
+  contact: "mochunho0909@gmail.com",
+  stats: [],
   notes: [
     {
       date: "2026.04.20",
       datetime: "2026-04-20",
-      title: "财务分析的价值，不只是解释过去",
-      summary: "更重要的是把经营动作、现金流和风险暴露连接起来，让下一步决策更清楚。",
+      title: "AI 时代最大的红利是技术平权",
+      summary: "AI 时代最大的红利是技术平权，现在非技术专业的人都有机会看懂项目、构造代码甚至创造一些有意思的东西，放到几年前学写python的时候想都不敢想。",
     },
     {
       date: "2026.04.13",
       datetime: "2026-04-13",
-      title: "AI 工具要从“小而确定”的流程切入",
-      summary: "先解决每周重复出现的报表整理、口径校验和文字初稿，再谈更大的自动化。",
+      title: "Markdown",
+      summary: "看到一条很有意思的想法，说以后代码开源会转变为prompt和想法的开源，MD格式将会越来越流行甚至变为AI时代的通用语言",
     },
     {
       date: "2026.04.02",
@@ -32,20 +28,20 @@ window.siteContent = {
   ],
   articles: [
     {
-      tag: "财务分析",
-      title: "从现金流视角看一家公司的经营韧性",
-      summary: "用经营现金流、应收周转和资本开支三个维度，快速判断企业是否在健康增长。",
+      tag: ["财务分析", "效率工具"],
+      title: "一条适用于Claude Code、Kimi Code等AI Agent 核对财务分析报告的prompt",
+      summary: "把非敏感报告、数据丢给AI Agent 核对",
       url: "#",
     },
     {
-      tag: "AI 工作流",
-      title: "我如何用 AI 辅助月度经营分析初稿",
-      summary: "把数据口径、异常项、管理层问题和文字表达拆成四个稳定步骤。",
+      tag: ["Hermes Agent", "RAG", "会计准则"],
+      title: "Hermes Agent+飞书知识库构建个人会计准则问答库",
+      summary: "一套准则收集、文档清洗、知识库构建、回答精准指向的工作流",
       url: "#",
     },
     {
-      tag: "职业复盘",
-      title: "财务人建立作品集的三个入口",
+      tag: ["Vibe Coding"],
+      title: "第一次Vibe Coding尝试：构建个人展示主页",
       summary: "不是展示“会用工具”，而是展示你如何定义问题、组织信息和推动判断。",
       url: "#",
     },
@@ -53,14 +49,14 @@ window.siteContent = {
   projects: [
     {
       icon: "↗",
-      title: "经营分析摘要生成器",
-      summary: "上传月度数据后，生成管理层可读的经营摘要、异常提示和追问清单。",
+      title: "经营指标追踪、展示看板",
+      summary: "上传月度数据后，生成管理层可读的数据分析看板。",
       labels: ["Prototype", "Local-first"],
     },
     {
       icon: "⌁",
-      title: "财务口径检查清单",
-      summary: "把常见报表口径、命名规则和勾稽关系整理成可复用的检查工具。",
+      title: "三大准则横向核对分析工具",
+      summary: "把常用准则PRC GAAP、IFRS、US GAAP展示页。一直眼馋四大里面技术部出的文档，AI时代普通人也可以自己用AI搞一个",
       labels: ["Checklist", "No login"],
     },
     {
@@ -71,3 +67,9 @@ window.siteContent = {
     },
   ],
 };
+
+window.siteContent.stats = [
+  { value: String(window.siteContent.notes.length), label: "个想法" },
+  { value: String(window.siteContent.articles.length), label: "篇文章" },
+  { value: String(window.siteContent.projects.length), label: "个 AI 项目" },
+];

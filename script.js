@@ -28,6 +28,8 @@ const safeURL = (value) => {
   return url.startsWith("javascript:") ? "#" : url;
 };
 
+const formatTags = (tag) => (Array.isArray(tag) ? tag.join(" / ") : tag);
+
 const renderStats = (stats) => {
   const list = document.querySelector('[data-list="stats"]');
   if (!list || !stats) return;
@@ -69,7 +71,7 @@ const renderArticles = (articles) => {
     .map(
       (article) => `
         <article class="article-card">
-          <span class="tag">${escapeHTML(article.tag)}</span>
+          <span class="tag">${escapeHTML(formatTags(article.tag))}</span>
           <h3>${escapeHTML(article.title)}</h3>
           <p>${escapeHTML(article.summary)}</p>
           <a href="${escapeHTML(safeURL(article.url))}" aria-label="阅读文章：${escapeHTML(article.title)}">阅读全文</a>
