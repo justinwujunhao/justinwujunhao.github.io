@@ -57,16 +57,28 @@
 
 ## GitHub Pages 部署
 
-当前仓库适合用 GitHub Pages 的“Deploy from a branch”方式部署。
+当前项目使用 GitHub Pages 用户主页仓库部署，仓库地址为：
 
-1. 确认代码已经推送到 `https://github.com/justinwujunhao/justinspage`。
-2. 打开仓库页面，进入 `Settings`。
-3. 在左侧 `Code and automation` 里选择 `Pages`。
-4. 在 `Build and deployment` 中，把 `Source` 设为 `Deploy from a branch`。
-5. `Branch` 选择 `main`，目录选择 `/(root)`，然后点击 `Save`。
-6. 等待几分钟后访问 `https://justinwujunhao.github.io/justinspage/`。
+`https://github.com/justinwujunhao/justinwujunhao.github.io`
 
-GitHub Pages 发布有时需要等待一段时间；如果页面暂时打不开，先等几分钟再刷新。
+本地 remote 已设置为：
+
+`https://github.com/justinwujunhao/justinwujunhao.github.io.git`
+
+推送代码：
+
+```bash
+cd /Users/tuitui/Documents/codexproject/personal-homepage-demo
+git push -u origin main
+```
+
+推送成功后，访问地址为：
+
+`https://justinwujunhao.github.io/`
+
+如果 GitHub Pages 没有自动启用，可以进入仓库 `Settings` -> `Pages`，将 `Source` 设为 `Deploy from a branch`，`Branch` 选择 `main`，目录选择 `/(root)`，然后点击 `Save`。
+
+GitHub Pages 发布有时需要等待几分钟；如果页面暂时打不开，先等一会儿再刷新。
 
 ## 安全建议
 
