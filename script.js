@@ -68,16 +68,18 @@ const renderArticles = (articles) => {
   if (!list || !articles) return;
 
   list.innerHTML = articles
-    .map(
-      (article) => `
-        <article class="article-card">
+    .map((article) => {
+      const href = safeURL(article.url);
+
+      return `
+        <a class="article-card card-link" href="${escapeHTML(href)}" aria-label="阅读文章：${escapeHTML(article.title)}">
           <span class="tag">${escapeHTML(formatTags(article.tag))}</span>
           <h3>${escapeHTML(article.title)}</h3>
           <p>${escapeHTML(article.summary)}</p>
-          <a href="${escapeHTML(safeURL(article.url))}" aria-label="阅读文章：${escapeHTML(article.title)}">阅读全文</a>
-        </article>
-      `,
-    )
+          <span class="card-cta">阅读全文</span>
+        </a>
+      `;
+    })
     .join("");
 };
 
@@ -86,18 +88,30 @@ const renderProjects = (projects) => {
   if (!list || !projects) return;
 
   list.innerHTML = projects
-    .map(
-      (project) => `
+    .map((project) => {
+      const cardContent = `
+        <div class="project-icon" aria-hidden="true">${escapeHTML(project.icon)}</div>
+        <h3>${escapeHTML(project.title)}</h3>
+        <p>${escapeHTML(project.summary)}</p>
+        <div class="project-meta">
+          ${project.labels.map((label) => `<span>${escapeHTML(label)}</span>`).join("")}
+        </div>
+      `;
+
+      if (project.url) {
+        return `
+          <a class="project-card card-link" href="${escapeHTML(safeURL(project.url))}" aria-label="查看项目：${escapeHTML(project.title)}">
+            ${cardContent}
+          </a>
+        `;
+      }
+
+      return `
         <article class="project-card">
-          <div class="project-icon" aria-hidden="true">${escapeHTML(project.icon)}</div>
-          <h3>${escapeHTML(project.title)}</h3>
-          <p>${escapeHTML(project.summary)}</p>
-          <div class="project-meta">
-            ${project.labels.map((label) => `<span>${escapeHTML(label)}</span>`).join("")}
-          </div>
+          ${cardContent}
         </article>
-      `,
-    )
+      `;
+    })
     .join("");
 };
 

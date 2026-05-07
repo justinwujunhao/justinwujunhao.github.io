@@ -51,6 +51,7 @@ window.siteContent = {
       icon: "↗",
       title: "经营指标追踪、展示看板",
       summary: "上传月度数据后，生成管理层可读的数据分析看板。",
+      url: "projects/dashboard.html",
       labels: ["Prototype", "Local-first"],
     },
     {

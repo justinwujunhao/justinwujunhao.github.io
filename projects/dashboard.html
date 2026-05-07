@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="财务数据指标看板工具项目介绍：面向月度经营分析会的数据填报、汇总、版本管理和同比分析。"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>财务数据指标看板工具｜Justin Wu</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top" aria-label="返回首页">
+        <span class="brand-mark">JW</span>
+        <span>Justin Wu</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html#notes">想法</a>
+        <a href="../index.html#writing">文章</a>
+        <a href="../index.html#projects">项目</a>
+        <a href="../index.html#about">关于</a>
+      </nav>
+    </header>
+
+    <main class="detail-main">
+      <a class="back-link" href="../index.html#projects">← 返回项目</a>
+
+      <section class="detail-hero">
+        <div>
+          <p class="kicker">Finance Dashboard</p>
+          <h1>财务数据指标看板工具</h1>
+          <p class="lead">
+            面向月度经营分析会的数据填报、汇总、版本管理和同比分析工具。系统支持结构化指标维护、模板导出、Excel
+            导入、合并口径自动计算、版本差异对比，以及公司与汇总口径的在线配置。
+          </p>
+          <div class="detail-badges">
+            <span>本地 Web 应用</span>
+            <span>SQLite 数据存储</span>
+            <span>Excel 模板填报</span>
+            <span>多月多版本</span>
+            <span>配置化看板</span>
+          </div>
+        </div>
+        <aside class="detail-panel" aria-label="项目概览">
+          <div>
+            <span>核心目标</span>
+            <strong>统一填报与合并</strong>
+          </div>
+          <div>
+            <span>看板布局</span>
+            <strong>上方指标，下方解析</strong>
+          </div>
+          <div>
+            <span>部署方式</span>
+            <strong>本地运行与管理</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="detail-section">
+        <p class="kicker">What It Solves</p>
+        <h2>把月度经营数据从散表变成可追踪的版本化看板</h2>
+        <p>
+          这个项目的重点不是做一个漂亮表格，而是把指标口径、公司范围、填报模板、导入校验、汇总规则和版本对比放进同一条稳定流程里。
+        </p>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>结构化指标</h3>
+            <p>支持在线新增、修改、停用、排序指标，并记录每次变更内容，避免模板字段和历史数据脱节。</p>
+          </article>
+          <article class="feature-card">
+            <h3>版本化导入</h3>
+            <p>每个月可以保留多个版本，导入时先预览再提交，便于保留初稿、修订稿和会议稿。</p>
+          </article>
+          <article class="feature-card">
+            <h3>口径可配置</h3>
+            <p>各汇总口径可设置顺序、包含公司，以及预算、本年、上年三类字段的独立计算方向。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <p class="kicker">Interface Sketch</p>
+        <h2>看板页面形态</h2>
+        <p>
+          主界面采用宽表形态展示公司、指标分组、预算、本年、上年和汇总行，下方保留各单位的变动解析，便于经营分析会快速定位问题。
+        </p>
+
+        <div class="figure-block">
+          <figure>
+            <svg class="dashboard-mock" viewBox="0 0 1160 620" role="img" aria-label="看板页面示意图">
+              <rect width="1160" height="620" fill="#fbfcf8" />
+              <rect x="34" y="36" width="1092" height="548" rx="14" fill="#ffffff" stroke="#dfe7e2" />
+              <text x="70" y="88" fill="#68736f" font-size="20" font-family="Arial">单位：万元</text>
+              <text x="70" y="132" fill="#18211f" font-size="34" font-weight="700" font-family="Arial">20XX年X月 版本示意</text>
+              <rect x="70" y="164" width="1020" height="360" rx="8" fill="#ffffff" stroke="#dfe7e2" />
+              <rect x="70" y="164" width="330" height="76" fill="#eef5ef" />
+              <rect x="400" y="164" width="276" height="76" fill="#eef4f8" />
+              <rect x="676" y="164" width="276" height="76" fill="#fff7e6" />
+              <rect x="952" y="164" width="138" height="76" fill="#f1f6ee" />
+              <text x="198" y="210" fill="#1f4a3d" font-size="22" font-weight="700" font-family="Arial">公司名称</text>
+              <text x="492" y="210" fill="#1f4a3d" font-size="22" font-weight="700" font-family="Arial">指标组 A</text>
+              <text x="766" y="210" fill="#1f4a3d" font-size="22" font-weight="700" font-family="Arial">指标组 B</text>
+              <text x="984" y="210" fill="#1f4a3d" font-size="22" font-weight="700" font-family="Arial">指标组 C</text>
+              <g stroke="#dfe7e2">
+                <line x1="70" y1="240" x2="1090" y2="240" />
+                <line x1="70" y1="286" x2="1090" y2="286" />
+                <line x1="70" y1="332" x2="1090" y2="332" />
+                <line x1="70" y1="378" x2="1090" y2="378" />
+                <line x1="70" y1="424" x2="1090" y2="424" />
+                <line x1="70" y1="470" x2="1090" y2="470" />
+                <line x1="400" y1="164" x2="400" y2="524" />
+                <line x1="676" y1="164" x2="676" y2="524" />
+                <line x1="952" y1="164" x2="952" y2="524" />
+              </g>
+              <g fill="#aab8b0">
+                <rect x="100" y="258" width="190" height="16" rx="8" />
+                <rect x="100" y="304" width="230" height="16" rx="8" />
+                <rect x="100" y="350" width="170" height="16" rx="8" />
+                <rect x="100" y="396" width="210" height="16" rx="8" />
+                <rect x="100" y="442" width="185" height="16" rx="8" />
+              </g>
+              <g fill="#486b83">
+                <rect x="440" y="258" width="58" height="14" rx="7" opacity="0.56" />
+                <rect x="578" y="258" width="58" height="14" rx="7" opacity="0.56" />
+                <rect x="716" y="258" width="58" height="14" rx="7" opacity="0.56" />
+                <rect x="854" y="258" width="58" height="14" rx="7" opacity="0.56" />
+                <rect x="992" y="258" width="58" height="14" rx="7" opacity="0.56" />
+                <rect x="440" y="304" width="58" height="14" rx="7" opacity="0.42" />
+                <rect x="578" y="304" width="58" height="14" rx="7" opacity="0.42" />
+                <rect x="716" y="304" width="58" height="14" rx="7" opacity="0.42" />
+                <rect x="854" y="304" width="58" height="14" rx="7" opacity="0.42" />
+                <rect x="992" y="304" width="58" height="14" rx="7" opacity="0.42" />
+                <rect x="440" y="350" width="58" height="14" rx="7" opacity="0.32" />
+                <rect x="578" y="350" width="58" height="14" rx="7" opacity="0.32" />
+                <rect x="716" y="350" width="58" height="14" rx="7" opacity="0.32" />
+                <rect x="854" y="350" width="58" height="14" rx="7" opacity="0.32" />
+                <rect x="992" y="350" width="58" height="14" rx="7" opacity="0.32" />
+              </g>
+              <rect x="70" y="470" width="1020" height="54" fill="#fff3cf" />
+              <rect x="100" y="489" width="150" height="16" rx="8" fill="#c3a35b" opacity="0.64" />
+              <rect x="440" y="489" width="58" height="14" rx="7" fill="#c3a35b" opacity="0.64" />
+              <rect x="578" y="489" width="58" height="14" rx="7" fill="#c3a35b" opacity="0.64" />
+              <rect x="716" y="489" width="58" height="14" rx="7" fill="#c3a35b" opacity="0.64" />
+            </svg>
+            <figcaption>图 1：看板主界面示意，展示宽表、冻结首列、指标分组和汇总行形态。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <p class="kicker">Capabilities</p>
+        <h2>核心功能</h2>
+        <div class="detail-two-col">
+          <article class="detail-card">
+            <h3>数据采集与版本管理</h3>
+            <ul>
+              <li>按年度、月份、版本号保存累计经营数据。</li>
+              <li>下属单位通过 Excel 模板填写指标和变动解析。</li>
+              <li>导入前提供校验预览，提交后形成独立版本。</li>
+              <li>支持同月多个版本之间的数值差异对比。</li>
+            </ul>
+          </article>
+          <article class="detail-card">
+            <h3>指标与口径配置</h3>
+            <ul>
+              <li>指标可在线新增、修改、停用、排序。</li>
+              <li>指标变更自动记录修改前后内容。</li>
+              <li>公司可勾选展示或隐藏。</li>
+              <li>汇总口径支持公司成员、顺序和字段计算方向配置。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <p class="kicker">Workflow</p>
+        <h2>使用流程</h2>
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <b>1</b>
+            <h3>维护指标</h3>
+            <p>确认本月启用指标、单位和显示顺序。</p>
+          </article>
+          <article class="workflow-card">
+            <b>2</b>
+            <h3>导出模板</h3>
+            <p>生成当前指标和公司范围的 Excel 填报模板。</p>
+          </article>
+          <article class="workflow-card">
+            <b>3</b>
+            <h3>导入数据</h3>
+            <p>上传填报文件，预览校验结果后提交版本。</p>
+          </article>
+          <article class="workflow-card">
+            <b>4</b>
+            <h3>查看看板</h3>
+            <p>自动生成指标宽表和各单位变动解析。</p>
+          </article>
+          <article class="workflow-card">
+            <b>5</b>
+            <h3>对比版本</h3>
+            <p>选择两个版本，查看字段级数值差异。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Justin Wu</span>
+      <span>财务数据指标看板工具介绍</span>
+    </footer>
+  </body>
+</html>
