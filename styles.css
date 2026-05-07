@@ -558,6 +558,168 @@ h3 {
   background: var(--white);
 }
 
+.compare-mock {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 22px;
+  background: #f7faf8;
+}
+
+.compare-column {
+  min-height: 260px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.compare-column h3 {
+  color: var(--forest);
+}
+
+.mock-line {
+  height: 10px;
+  margin: 12px 0;
+  border-radius: 999px;
+  background: #cfd9d3;
+}
+
+.mock-line.short {
+  width: 68%;
+}
+
+.mock-line.mid {
+  width: 84%;
+}
+
+.mock-line.diff {
+  background: rgba(195, 163, 91, 0.72);
+}
+
+.mock-line.requirement {
+  background: rgba(183, 116, 85, 0.72);
+}
+
+.mock-line.term {
+  background: rgba(111, 143, 123, 0.76);
+}
+
+.process-table {
+  width: 100%;
+  margin-top: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-collapse: separate;
+  border-radius: 8px;
+  border-spacing: 0;
+  background: var(--white);
+}
+
+.process-table th,
+.process-table td {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.process-table th {
+  background: var(--wash);
+  color: var(--forest);
+  font-size: 14px;
+}
+
+.process-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.process-table td {
+  color: var(--muted);
+}
+
+.post-main {
+  padding: 72px 0 96px;
+}
+
+.post-header {
+  max-width: 860px;
+  padding: 72px 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-header h1 {
+  font-size: clamp(40px, 6vw, 68px);
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.post-body {
+  max-width: 840px;
+  padding-top: 48px;
+  font-size: 18px;
+  line-height: 1.86;
+}
+
+.post-body h2 {
+  margin-top: 52px;
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+.post-body h3 {
+  margin-top: 32px;
+}
+
+.post-body p,
+.post-body li {
+  color: var(--muted);
+}
+
+.post-body a {
+  color: var(--forest);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 24px;
+}
+
+.post-body code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--wash);
+  color: var(--forest);
+  font-size: 0.92em;
+}
+
+.post-body pre {
+  max-height: 620px;
+  overflow: auto;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #101915;
+  color: #eef7ef;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.post-body pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
 .back-link {
   display: inline-flex;
   margin-bottom: 30px;
@@ -594,7 +756,8 @@ h3 {
   .detail-hero,
   .feature-grid,
   .detail-two-col,
-  .workflow-grid {
+  .workflow-grid,
+  .compare-mock {
     grid-template-columns: 1fr;
   }
 

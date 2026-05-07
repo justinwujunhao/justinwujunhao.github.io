@@ -26,17 +26,38 @@
 
 ### 日常修改内容
 
-日常只需要优先编辑 `content.js`，不用改 `index.html`。
+日常只需要优先编辑数据文件，不用改 `index.html`。
 
 - `name`：姓名或主页显示名。
 - `title`：首页大标题。
 - `subtitle`：首页简介。
 - `contact`：联系邮箱或其他公开联系方式。
-- `notes`：最近想法。
-- `articles`：精选文章。
-- `projects`：AI vibe coding 项目。
+- `data/notes.json`：最近想法。
+- `data/notes.js`：本地 `file://` 预览兜底文件，由 `tools/add-note.mjs` 自动更新，通常不用手动改。
+- `content.js` 中的 `articles`：精选文章。
+- `content.js` 中的 `projects`：AI vibe coding 项目。
 
-如果只是改文字、日期、文章标题、项目介绍，基本都在 `content.js` 完成。
+如果只是新增想法，可以运行：
+
+```bash
+node tools/add-note.mjs "标题" "摘要"
+```
+
+也可以不带参数运行，按提示输入：
+
+```bash
+node tools/add-note.mjs
+```
+
+如果只是改文章标题、项目介绍，基本都在 `content.js` 完成。
+
+### 新增文章
+
+文章二级页放在 `articles/` 目录。可以复制 `articles/article-template.html` 作为新文章起点，写完后在 `content.js` 的 `articles` 数组里补充 `url`，例如：
+
+```js
+url: "articles/your-article.html",
+```
 
 ### 增长阶段
 

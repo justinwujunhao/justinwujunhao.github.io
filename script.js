@@ -30,6 +30,27 @@ const safeURL = (value) => {
 
 const formatTags = (tag) => (Array.isArray(tag) ? tag.join(" / ") : tag);
 
+const getStats = ({ notes = [], articles = [], projects = [] }) => [
+  { value: String(notes.length), label: "个想法" },
+  { value: String(articles.length), label: "篇文章" },
+  { value: String(projects.length), label: "个 AI 项目" },
+];
+
+const loadNotes = async () => {
+  try {
+    const response = await fetch("./data/notes.json", { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`Failed to load notes: ${response.status}`);
+    }
+
+    const notes = await response.json();
+    return Array.isArray(notes) ? notes : [];
+  } catch (error) {
+    console.warn(error);
+    return window.siteNotes ?? content.notes ?? [];
+  }
+};
+
 const renderStats = (stats) => {
   const list = document.querySelector('[data-list="stats"]');
   if (!list || !stats) return;
@@ -115,15 +136,22 @@ const renderProjects = (projects) => {
     .join("");
 };
 
-if (content) {
+const initContent = async () => {
+  if (!content) return;
+
   document.title = `${content.name}｜Finance Notes & AI Builds`;
   setText('[data-content="name"]', content.name);
   setText('[data-content="initials"]', content.initials);
   setText('[data-content="title"]', content.title);
   setText('[data-content="subtitle"]', content.subtitle);
   setText('[data-content="contact"]', content.contact);
-  renderStats(content.stats);
-  renderNotes(content.notes);
+
   renderArticles(content.articles);
   renderProjects(content.projects);
-}
+
+  content.notes = await loadNotes();
+  renderNotes(content.notes);
+  renderStats(getStats(content));
+};
+
+initContent();

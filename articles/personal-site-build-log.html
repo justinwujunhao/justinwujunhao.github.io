@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="记录个人网站从主页、项目页、文章页到内容更新流程的搭建过程，以及后续 Agent 自动化发布方案。"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>第一次 Vibe Coding 尝试：构建个人展示主页｜Justin Wu</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top" aria-label="返回首页">
+        <span class="brand-mark">JW</span>
+        <span>Justin Wu</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html#notes">想法</a>
+        <a href="../index.html#writing">文章</a>
+        <a href="../index.html#projects">项目</a>
+        <a href="../index.html#about">关于</a>
+      </nav>
+    </header>
+
+    <main class="post-main">
+      <a class="back-link" href="../index.html#writing">← 返回文章</a>
+
+      <article>
+        <header class="post-header">
+          <p class="kicker">Vibe Coding / Personal Site</p>
+          <h1>第一次 Vibe Coding 尝试：构建个人展示主页</h1>
+          <p class="lead">
+            这个网站不是为了证明“我会用 AI 写代码”，而是为了搭一个长期可更新的个人知识资产入口：
+            想法能快速记录，文章能沉淀方法，项目能展示真实工具。
+          </p>
+          <div class="post-meta">
+            <span>2026.05.07</span>
+            <span>Vibe Coding / 个人网站 / 内容工作流</span>
+            <span>约 9 分钟阅读</span>
+          </div>
+        </header>
+
+        <div class="post-body">
+          <h2>为什么要先做个人主页</h2>
+          <p>
+            我需要一个比朋友圈更正式、比简历更灵活、比代码仓库更容易阅读的空间。财务分析、会计准则、效率工具和 AI 小实验这些内容，
+            如果只散落在聊天记录或本地文件里，很难形成长期复利。
+          </p>
+          <p>
+            所以这个主页的第一目标不是复杂，而是低维护：打开就是当前身份、最近想法、精选文章和项目陈列。
+            后续无论是写一条短想法，还是补一篇项目介绍，都应该能被自然地放进同一个结构里。
+          </p>
+
+          <h2>为什么最后选择 GitHub Pages</h2>
+          <p>
+            在真正开始搭之前，我也短暂比较过几类主流方案。第一类是国内云服务器或对象存储配合 CDN，
+            可控性强，也更像一个完整站点工程，但域名解析、备案、服务器配置和后续运维都会带来额外成本。
+            对一个刚起步的个人主页来说，这些前置动作有点重。
+          </p>
+          <p>
+            第二类是 Vercel、Netlify 这类现代静态站托管平台，开发体验很好，也适合未来接入构建流程。
+            但当前站点本质上只是 HTML、CSS 和少量 JavaScript，暂时不需要复杂的构建、服务端函数或环境变量管理。
+            如果一开始就引入完整平台，反而会让“先发布出来”这件事变慢。
+          </p>
+          <p>
+            第三类是继续放在本地，或者只把代码传到仓库里。这种方式最省事，但它没有真正形成一个公开入口，
+            也就无法承担“个人知识资产主页”的角色。内容可以被保存，却不容易被访问、分享和持续更新。
+          </p>
+          <p>
+            所以最后选择 GitHub Pages，原因很直接：它和代码仓库天然连在一起，静态文件 push 后就能发布；
+            对当前阶段足够简单，也省去了国内服务器常见的备案流程。这个选择不是为了追求最强能力，
+            而是为了把第一版站点的阻力降到最低，让后续精力尽量花在内容和工作流上。
+          </p>
+
+          <h2>目前已经搭好的结构</h2>
+          <p>当前版本是一个静态站点，主要由几类文件组成：</p>
+          <ul>
+            <li><code>index.html</code>：主页结构，包含想法、文章、项目和关于区域。</li>
+            <li><code>styles.css</code>：统一视觉风格，包括主页卡片、项目详情页、文章页和代码块样式。</li>
+            <li><code>content.js</code>：低频内容数据，例如个人信息、文章列表、项目列表。</li>
+            <li><code>data/notes.json</code>：高频想法数据，已经从 <code>content.js</code> 中拆出来。</li>
+            <li><code>articles/</code>：文章二级页目录，包含文章模板和正式文章。</li>
+            <li><code>projects/</code>：项目二级页目录，已经放入 dashboard 和准则对比工具介绍。</li>
+          </ul>
+          <p>
+            这个拆分背后的判断是：主页结构和项目介绍属于低频变化，适合静态文件；想法属于高频变化，应该尽量从代码修改里剥离出来。
+          </p>
+
+          <h2>已经解决的几个问题</h2>
+          <h3>1. 首页计数自动化</h3>
+          <p>
+            顶部的想法、文章、项目数量不再手动维护，而是由脚本按当前数据自动计算。这样新增文章或项目后，不需要记得去改一个容易漏掉的数字。
+          </p>
+
+          <h3>2. 项目和文章支持二级页</h3>
+          <p>
+            项目卡片已经能整张点击进入详情页。dashboard 项目和准则对比项目都被整理成了统一风格的二级介绍页，
+            既保留原项目材料里的信息，也不会破坏个人网站整体的视觉一致性。
+          </p>
+
+          <h3>3. 想法更新链路变短</h3>
+          <p>
+            原来想法写在 <code>content.js</code> 里，每次新增都像改代码。现在想法放在 <code>data/notes.json</code>，
+            并提供了 <code>tools/add-note.mjs</code>，可以用命令快速追加：
+          </p>
+          <pre><code>node tools/add-note.mjs "标题" "摘要"</code></pre>
+          <p>
+            它会自动把新想法插到最上面，并同步更新本地 file 预览兜底用的 <code>data/notes.js</code>。
+          </p>
+
+          <h2>从当前更新流程到后续自动化</h2>
+          <p>
+            这个站点接下来不需要立刻变复杂。短期内，更重要的是先把手动更新流程固定下来，
+            让每次新增内容都有一条清楚的路径：
+          </p>
+          <ol>
+            <li>想法：用 <code>node tools/add-note.mjs</code> 快速追加到 <code>data/notes.json</code>。</li>
+            <li>文章：复制 <code>articles/article-template.html</code>，写成新的二级页。</li>
+            <li>项目：复制已有项目详情页结构，保持二级页风格一致。</li>
+            <li>索引：更新 <code>content.js</code> 中对应的文章或项目链接。</li>
+            <li>检查：运行 <code>node --check content.js</code> 和 <code>node --check script.js</code>。</li>
+            <li>发布：提交并推送到 GitHub，等待静态页面更新。</li>
+          </ol>
+          <p>
+            这条流程先解决稳定性问题：我知道每次应该改哪里、检查什么、如何发布。等它足够顺手之后，
+            中期目标再让 Agent 接管第 2 到第 6 步。人只负责给草稿、判断是否发布、确认最终效果。
+          </p>
+
+          <h3>文章发布：让 Agent 接管机械动作</h3>
+          <p>
+            文章的更新频率不会像想法那么高，但每次手动复制模板、创建 HTML、更新 <code>content.js</code> 仍然有摩擦。
+            后续可以把文章发布做成一个 Agent 工作流：用户给一份 Markdown、草稿或 prompt，Agent 根据模板生成文章页，
+            自动更新文章索引，运行语法检查、链接检查和本地预览检查，确认无误后再提交并推送到 GitHub。
+          </p>
+          <p>
+            这个流程的关键不是“自动写文章”，而是把机械动作标准化：命名、排版、链接、卡片摘要、检查项都统一。
+          </p>
+
+          <h3>想法同步：保留快记录和慢发布</h3>
+          <p>
+            真正高频的是想法。理想状态是手机、电脑、聊天工具、Notion 或飞书里都能先记录，
+            然后由 Agent 定期整理并同步到网站。可以先建立一个“想法收件箱”，例如 Notion 数据库、
+            GitHub Issue、飞书表格或一个同步文件；再让 Agent cron 每天或每周读取新增想法，
+            筛选标记为可发布的内容，自动更新 <code>data/notes.json</code> 并推送。
+          </p>
+          <p>
+            这样可以保留“快记录”和“慢发布”的区别：先快速捕捉想法，再让 Agent 帮忙整理标题、摘要和日期格式。
+          </p>
+
+          <h3>内容积累后的基础设施</h3>
+          <p>
+            当文章多起来后，主页只展示精选文章是不够的。可以增加 <code>articles/index.html</code>，
+            按时间列出全部文章，再用标签筛选财务分析、会计准则、效率工具、Vibe Coding 等主题。
+          </p>
+          <p>
+            现在文章直接写 HTML，优点是简单，缺点是写作体验不够轻。后续可以把文章正文迁移到 Markdown，
+            再由构建脚本生成 HTML。等内容继续积累后，再补充 RSS、<code>sitemap.xml</code> 和轻量搜索，
+            让项目、文章、想法都可以被订阅、发现和快速检索。
+          </p>
+
+          <h2>阶段性结论</h2>
+          <p>
+            这个项目目前还很轻，但已经有了一个可继续演进的骨架：主页承载入口，二级页承载内容，数据文件承载高频更新。
+            下一步最值得做的不是增加复杂功能，而是继续减少“从想法到发布”的摩擦。
+          </p>
+          <p>
+            一个个人网站真正有价值的地方，不是上线那天，而是半年后还能低成本更新。这个项目接下来要优化的，也正是这件事。
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Justin Wu</span>
+      <span>Finance Notes & AI Builds</span>
+    </footer>
+  </body>
+</html>
