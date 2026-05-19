@@ -9,6 +9,12 @@ window.siteContent = {
   notes: [],
   articles: [
     {
+      tag: ["AI 工作流", "财税实务", "文档生成"],
+      title: "ChatGPT+Codex，从领导一句话到生成全套税务专项检查文件",
+      summary: "记录一次内部税务专项检查材料的生成、修改和核验流程，实现从领导一句话到可落地文件体系的完整工作流。",
+      url: "articles/tax-inspection-ai-workflow.html",
+    },
+    {
       tag: ["财务分析", "效率工具"],
       title: "一条适用于Claude Code、Kimi Code等AI Agent 核对财务分析报告的prompt",
       summary: "以 Kimi Code 为例，把非敏感报告交给 AI Agent 做数据、表文、逻辑和文字核对。",
