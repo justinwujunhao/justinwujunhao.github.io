@@ -3,7 +3,7 @@ window.siteNotes = [
     "date": "2026.05.21",
     "datetime": "2026-05-21",
     "title": "最好的 Hermes Agents 管理工具是 Codex",
-    "summary": "Codex MacOS APP 是目前管理 Hermes Agent 工作流最顺手的工具，可以实现整个/.hermes 文件间层面的把控，避免了Hermes Agent自己修自己修坏了、和飞书断连接等问题还能梳理不同profile间记忆错乱的问题。"
+    "summary": "Codex MacOS APP 是目前管理 Hermes Agent 工作流最顺手的工具，可以实现整个/.hermes 文件间层面的把控，避免了Hermes Agent自己修自己修坏了和飞书断连接等问题，还能梳理不同profile间记忆和SOUL，让人舒适。"
   },
   {
     "date": "2026.05.08",
