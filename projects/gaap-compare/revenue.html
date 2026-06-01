@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="收入准则差异对比结果：PRC GAAP 与 IFRS 的条文映射、关系类型、置信度和差异点说明。"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>收入准则差异对比结果｜Justin Wu</title>
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html#top" aria-label="返回首页">
+        <span class="brand-mark">JW</span>
+        <span>Justin Wu</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../../index.html#notes">想法</a>
+        <a href="../../index.html#writing">文章</a>
+        <a href="../../index.html#projects">项目</a>
+        <a href="../../index.html#about">关于</a>
+      </nav>
+    </header>
+
+    <main class="detail-main comparison-main">
+      <a class="back-link" href="../gaap-compare.html">← 返回准则对比结果库</a>
+
+      <section class="detail-hero comparison-hero">
+        <div>
+          <p class="kicker">Revenue Standard</p>
+          <h1>收入准则差异对比结果</h1>
+          <p class="lead">
+            以中国企业会计准则收入准则为主线，对照 IFRS 15 的相关条文，展示 AI 辅助生成并可人工复核的条文映射和差异说明。
+          </p>
+          <div class="detail-badges">
+            <span>PRC GAAP</span>
+            <span>IFRS 15</span>
+            <span>条文级映射</span>
+            <span>差异点展开</span>
+          </div>
+        </div>
+        <aside class="detail-panel" aria-label="收入准则统计" data-revenue-stats-panel></aside>
+      </section>
+
+      <section class="detail-section">
+        <p class="kicker">Result Browser</p>
+        <h2>条文映射与差异点</h2>
+        <p>
+          可以按关系类型、差异类型和关键词筛选。卡片以中国准则条文为主线，展开后查看对应 IFRS 条文及差异说明。
+        </p>
+
+        <div class="comparison-toolbar" aria-label="结果筛选">
+          <label>
+            <span>关系类型</span>
+            <select data-filter-relationship>
+              <option value="ALL">全部关系</option>
+              <option value="EQUIVALENT">直接等同</option>
+              <option value="SIMILAR">相关对应</option>
+              <option value="DIFFERENT">存在差异</option>
+              <option value="NO_MATCH">无对应关系</option>
+            </select>
+          </label>
+          <label>
+            <span>差异类型</span>
+            <select data-filter-diff>
+              <option value="ALL">全部差异</option>
+              <option value="TERMINOLOGY">术语差异</option>
+              <option value="SCOPE">范围差异</option>
+              <option value="REQUIREMENT">要求差异</option>
+              <option value="EXAMPLE">示例差异</option>
+              <option value="OTHER">其他差异</option>
+            </select>
+          </label>
+          <label class="comparison-search">
+            <span>关键词</span>
+            <input data-filter-search type="search" placeholder="搜索条文、说明或片段" />
+          </label>
+        </div>
+
+        <div class="comparison-result-count" data-result-count></div>
+        <div class="comparison-result-list" data-revenue-mapping-list></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Justin Wu</span>
+      <span>收入准则差异对比结果</span>
+    </footer>
+
+    <script src="../../data/gaap-revenue-comparison.js"></script>
+    <script src="./revenue.js"></script>
+  </body>
+</html>

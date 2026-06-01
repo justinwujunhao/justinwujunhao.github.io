@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="PIUGAAP 项目介绍：面向 PRC GAAP、IFRS、US GAAP 的准则差异对比分析工具。"
+      content="PIUGAAP 准则差异对比结果库：展示 PRC GAAP、IFRS、US GAAP 等准则体系的结构化对比成果。"
     />
     <meta name="referrer" content="no-referrer" />
-    <title>三大准则横向核对分析工具｜Justin Wu</title>
+    <title>准则差异对比结果库｜Justin Wu</title>
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
@@ -31,208 +31,114 @@
       <section class="detail-hero">
         <div>
           <p class="kicker">PIUGAAP</p>
-          <h1>三大准则横向核对分析工具</h1>
+          <h1>准则差异对比结果库</h1>
           <p class="lead">
-            一个面向 PRC GAAP、IFRS、US GAAP 的准则差异对比工具。它从 PDF、Word、Markdown 文档出发，识别条文结构，
-            再用 AI 建立条文映射关系，帮助使用者快速看到不同准则体系之间的相同、相近与关键差异。
+            这个页面收纳已经完成结构化对比的准则专题。每个专题进入三级页面后，可以直接查看条文映射、关系类型、置信度和差异点说明。
           </p>
           <div class="detail-badges">
             <span>PRC GAAP</span>
             <span>IFRS</span>
             <span>US GAAP</span>
             <span>AI 条文映射</span>
-            <span>SQLite 本地沉淀</span>
+            <span>静态展示</span>
           </div>
         </div>
         <aside class="detail-panel" aria-label="项目概览">
           <div>
-            <span>核心目标</span>
+            <span>展示层级</span>
+            <strong>主页入口 / 结果索引 / 准则详情</strong>
+          </div>
+          <div>
+            <span>当前成果</span>
+            <strong data-comparison-count>1 个准则专题</strong>
+          </div>
+          <div>
+            <span>核心用途</span>
             <strong>把准则差异变成可复核知识库</strong>
-          </div>
-          <div>
-            <span>输入资料</span>
-            <strong>PDF / Word / Markdown</strong>
-          </div>
-          <div>
-            <span>分析粒度</span>
-            <strong>条文级映射与差异说明</strong>
           </div>
         </aside>
       </section>
 
       <section class="detail-section">
-        <p class="kicker">What It Solves</p>
-        <h2>准则对比难点不是翻译，而是建立语义坐标</h2>
+        <p class="kicker">Completed Standards</p>
+        <h2>已完成准则</h2>
         <p>
-          不同准则体系下的条文经常编号不同、表达不同、示例范围不同。PIUGAAP 的目标是把厚重文档拆成可追踪、可对比、可人工复核的条文单元，
-          再把等价要求、相似要求和关键差异结构化保存下来。
+          当前先展示收入准则。后续如果加入租赁、金融工具、企业合并等专题，只需要按同一数据结构增加一个数据文件和一张索引卡片。
         </p>
+        <div class="comparison-index-grid" data-gaap-comparison-list></div>
+      </section>
 
+      <section class="detail-section">
+        <p class="kicker">How It Works</p>
+        <h2>从准则原文到条文级差异</h2>
         <div class="workflow-grid">
           <article class="workflow-card">
             <b>1</b>
-            <h3>上传准则</h3>
-            <p>录入准则代码、名称和体系，上传 PDF、Word 或 Markdown 文档。</p>
+            <h3>导入准则</h3>
+            <p>录入准则代码、名称和所属体系，导入 PDF、Word 或 Markdown 原文。</p>
           </article>
           <article class="workflow-card">
             <b>2</b>
-            <h3>识别拆分</h3>
-            <p>解析文档文本，识别条文编号，保存条文顺序和正文。</p>
+            <h3>拆分条文</h3>
+            <p>识别条文编号和正文，把厚文档拆成可比较的最小工作单元。</p>
           </article>
           <article class="workflow-card">
             <b>3</b>
-            <h3>准则管理</h3>
-            <p>按准则代码聚合不同体系，支持查看、编辑和人工校正。</p>
+            <h3>建立映射</h3>
+            <p>用 AI 辅助判断不同准则体系之间的等同、相似或差异关系。</p>
           </article>
           <article class="workflow-card">
             <b>4</b>
-            <h3>AI 对比</h3>
-            <p>选择至少两个体系，调用 AI 分析条文映射和差异类型。</p>
+            <h3>沉淀差异</h3>
+            <p>保存差异类型、来源片段、对比片段、重要程度和说明。</p>
           </article>
           <article class="workflow-card">
             <b>5</b>
-            <h3>结果复核</h3>
-            <p>并列查看条文、差异说明、置信度和重要性等级。</p>
+            <h3>静态展示</h3>
+            <p>把结果发布成可浏览、可筛选、可复核的个人知识资产。</p>
           </article>
         </div>
-      </section>
-
-      <section class="detail-section">
-        <p class="kicker">Core Flow</p>
-        <h2>从资料进入系统，到条文级知识库</h2>
-        <div class="detail-two-col">
-          <article class="detail-card">
-            <h3>上传与解析</h3>
-            <p>
-              用户先填写准则代码，例如 CAS14、IFRS15 或 ASC606，再填写准则名称并选择所属体系。后端根据文件类型读取文本：
-              PDF 使用解析器，Word 转成文本，Markdown 直接读取原文。
-            </p>
-            <div class="detail-meta">
-              <span>准则代码</span>
-              <span>体系标签</span>
-              <span>文件导入</span>
-            </div>
-          </article>
-          <article class="detail-card">
-            <h3>条文拆分</h3>
-            <p>
-              系统识别 14.1、15.5、606-10-55-1 或“第一条”等编号模式，把整份文档拆成带编号、顺序和正文的条文记录。
-              后续 AI 对比基于条文级映射，而不是文档级粗略比较。
-            </p>
-            <div class="detail-meta">
-              <span>article_number</span>
-              <span>article_index</span>
-              <span>content_hash</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="detail-section">
-        <p class="kicker">AI Comparison</p>
-        <h2>让 AI 建立条文映射，人工再复核判断</h2>
-        <p>
-          当同一个准则代码下存在至少两个体系时，系统读取各体系条文，建立 mappings 记录，并为每组映射保存关系类型、置信度和差异点。
-          差异类型覆盖术语差异、范围差异、要求差异、示例差异和其他差异。
-        </p>
-
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Equivalent</h3>
-            <p>识别实质等价要求，减少重复阅读，让用户先跳过低风险区域。</p>
-          </article>
-          <article class="feature-card">
-            <h3>Similar</h3>
-            <p>标出表达相似但需要复核的条文，适合进一步判断适用范围。</p>
-          </article>
-          <article class="feature-card">
-            <h3>Different</h3>
-            <p>定位范围、确认、计量、披露或示例上的实质差异。</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="detail-section">
-        <p class="kicker">Result View</p>
-        <h2>并列阅读，快速定位差异</h2>
-        <p>
-          准则详情页把所有体系的条文和 AI 识别出的映射结果结合展示。使用者既可以查看条文列表，也可以进入差异卡片，看到源条文、映射条文、
-          差异类型、说明和重要性。
-        </p>
-
-        <div class="figure-block">
-          <figure>
-            <div class="compare-mock" role="img" aria-label="准则差异对比结果页面示意">
-              <section class="compare-column">
-                <h3>PRC GAAP</h3>
-                <div class="mock-line mid"></div>
-                <div class="mock-line requirement"></div>
-                <div class="mock-line short"></div>
-                <div class="mock-line"></div>
-                <div class="detail-meta"><span>履约义务确认要求不同</span></div>
-              </section>
-              <section class="compare-column">
-                <h3>IFRS</h3>
-                <div class="mock-line mid"></div>
-                <div class="mock-line diff"></div>
-                <div class="mock-line short"></div>
-                <div class="mock-line"></div>
-                <div class="detail-meta"><span>可变对价约束表达更细</span></div>
-              </section>
-              <section class="compare-column">
-                <h3>US GAAP</h3>
-                <div class="mock-line mid"></div>
-                <div class="mock-line term"></div>
-                <div class="mock-line short"></div>
-                <div class="mock-line"></div>
-                <div class="detail-meta"><span>术语与编号体系不同</span></div>
-              </section>
-            </div>
-            <figcaption>图 1：三套准则并列阅读，差异类型用不同色条提示，帮助先扫问题再读原文。</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="detail-section">
-        <p class="kicker">Data Layer</p>
-        <h2>数据如何沉淀</h2>
-        <table class="process-table">
-          <thead>
-            <tr>
-              <th>数据层</th>
-              <th>保存内容</th>
-              <th>在流程中的作用</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>standards</td>
-              <td>准则代码、名称、体系、版本、生效日期、原始文件路径</td>
-              <td>作为准则知识库入口，保证同一主题下多体系可并列管理。</td>
-            </tr>
-            <tr>
-              <td>articles</td>
-              <td>条文编号、条文顺序、条文正文、内容哈希</td>
-              <td>把文档拆成可比较的最小工作单元，支撑条文级映射。</td>
-            </tr>
-            <tr>
-              <td>mappings</td>
-              <td>主条文、映射条文列表、关系类型、置信度、人工校验信息</td>
-              <td>记录不同准则体系之间的对应关系，后续可以复核和修正。</td>
-            </tr>
-            <tr>
-              <td>differences</td>
-              <td>差异类型、来源体系、文本片段、对比片段、说明、重要性</td>
-              <td>把 AI 分析结果结构化，形成可检索、可展示、可扩展的差异库。</td>
-            </tr>
-          </tbody>
-        </table>
       </section>
     </main>
 
     <footer class="site-footer">
       <span>© 2026 Justin Wu</span>
-      <span>PIUGAAP 准则差异对比工具介绍</span>
+      <span>PIUGAAP 准则差异对比结果库</span>
     </footer>
+
+    <script src="../data/gaap-comparisons.js"></script>
+    <script>
+      const list = document.querySelector("[data-gaap-comparison-list]");
+      const count = document.querySelector("[data-comparison-count]");
+      const escapeHTML = (value) =>
+        String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+
+      const comparisons = window.gaapComparisons || [];
+      if (count) count.textContent = `${comparisons.length} 个准则专题`;
+      if (list) {
+        list.innerHTML = comparisons
+          .map(
+            (item) => `
+              <a class="comparison-index-card card-link" href="${escapeHTML(item.url)}">
+                <span class="tag">${escapeHTML(item.status)}</span>
+                <h3>${escapeHTML(item.title)}</h3>
+                <p>${escapeHTML(item.summary)}</p>
+                <dl class="comparison-card-stats">
+                  <div><dt>对比框架</dt><dd>${escapeHTML(item.frameworks.join(" vs "))}</dd></div>
+                  <div><dt>映射关系</dt><dd>${escapeHTML(item.mappingCount)} 组</dd></div>
+                  <div><dt>差异点</dt><dd>${escapeHTML(item.differenceCount)} 个</dd></div>
+                </dl>
+                <span class="card-cta">查看完整结果</span>
+              </a>
+            `,
+          )
+          .join("");
+      }
+    </script>
   </body>
 </html>
