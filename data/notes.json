@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026.06.03",
+    "datetime": "2026-06-03",
+    "title": "用 Codex 当大总管,直接给 Hermes 发 prompt",
+    "summary": "今天让 Hermes 整理会计准则知识库的维护更新计划,本来想着发给 Codex 评估一下,后面发现根本不需要中转 —— 直接让 Codex 读消息、评估方案、打回让 Hermes 改,Codex 直接当大总管。"
+  },
+  {
     "date": "2026.06.01",
     "datetime": "2026-06-01",
     "title": "minimax m3.0 升级,准则分析终于基本能看了",
