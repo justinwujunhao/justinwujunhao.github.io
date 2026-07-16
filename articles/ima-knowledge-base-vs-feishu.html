@@ -44,6 +44,7 @@
         </header>
 
         <div class="post-body">
+          <figure><img src="../assets/articles/ima-knowledge-base-vs-feishu-01.png" alt="" loading="lazy" /></figure>
           <h2>一、个人知识库搭建：看似很美好</h2>
           <p>早在 OpenClaw 出来的时候，我就在琢磨：能不能用 AI Agent 做一个沉淀专业知识的工具？</p>
           <p>想着自己一直缺少一个个人知识库，于是搭了个知识库管理龙虾，配合飞书知识库进行知识归集和检索。</p>
@@ -62,6 +63,7 @@
           <p>就看信永这个知识库的体量：<strong>2.6 万个知识文档</strong>，基本涵盖了准则、法规和公开案例，能满足从业者几乎 99% 的场景。</p>
           <p><strong>这意味着所有人都不必重复造轮子了。</strong></p>
           <p>可以直接用 Agent 调用、查询知识库，这简直是配享大庙的丰功伟绩。</p>
+          <figure><img src="../assets/articles/ima-knowledge-base-vs-feishu-02.jpg" alt="" loading="lazy" /></figure>
           <p>第二个亮点是，ima 能跨知识库索引。</p>
           <p>这意味着除了订阅的知识库，你还能构建自己的知识库用于增补，让 Agent 的查询更贴合自己的业务。</p>
           <p>举个例子，如果我查询完信永的 CAS 准则后，还有查询 IFRS 的需求，我可以接一个 IFRS 知识库继续提问，共享上下文。</p>
@@ -74,13 +76,18 @@
           <p>第一步是注册账号、迁移知识库。</p>
           <p>上面提到了，Agent 直接搞定，通过几轮对话完成了无痛搬家。</p>
           <p>不过有个小坑：Agent 会分不清"笔记"和"知识库文档"，从而用成笔记的 API。需要明确指出，让它阅读官方文档中关于知识库文档的传入方法。</p>
+          <figure><img src="../assets/articles/ima-knowledge-base-vs-feishu-03.jpg" alt="" loading="lazy" /></figure>
           <p>与此同时，可以把 ima 的外接模型 API 和 Copilot 的 <code>SOUL.MD</code> 配好。</p>
           <p>我习惯让它只查询我已有的知识库，如果查不到，再联网查询，方便我进行知识库增补。</p>
+          <figure><img src="../assets/articles/ima-knowledge-base-vs-feishu-04.jpg" alt="" loading="lazy" /></figure>
           <p>知识库文档和订阅的知识库都设置好后，就可以测试了。我尝试问了一个问题：</p>
+          <figure><img src="../assets/articles/ima-knowledge-base-vs-feishu-05.jpg" alt="" loading="lazy" /></figure>
+          <figure><img src="../assets/articles/ima-knowledge-base-vs-feishu-06.jpg" alt="" loading="lazy" /></figure>
           <p>回复的大体方向和结论跟我自己手动查询的结论差不多，引用来源也清晰、合理，效果还是可以的。</p>
           <p>再接着问 IFRS 的指向性查询，结果也不错。</p>
 
           <h2>四、知识壁垒被消除了，然后呢？</h2>
+          <figure><img src="../assets/articles/ima-knowledge-base-vs-feishu-07.jpg" alt="" loading="lazy" /></figure>
           <p>AI 生态发展到现在，给我最直观的一点感受是：<strong>知识壁垒被消灭了。</strong></p>
           <p>一方面，专业知识的查询变得前所未有地简单、直接。</p>
           <p>以前，会计准则、审计准则和案例汇编知识库，几乎是各个大所内部的核心知识资产。现在，它们正在成为全行业的人和 Agent 都能共享的语料库。</p>

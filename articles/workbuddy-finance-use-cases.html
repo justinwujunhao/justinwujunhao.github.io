@@ -44,6 +44,7 @@
         </header>
 
         <div class="post-body">
+          <figure><img src="../assets/articles/workbuddy-finance-use-cases-01.png" alt="" loading="lazy" /></figure>
           <p>
             WorkBuddy 已经成了我日常工作中，Codex 之外的第二主力 Agent，继<a href="recommend-workbuddy-for-finance.html">我真心推荐每一个财务人下载一个 WorkBuddy</a>这篇文章之后又陆续发掘了一些场景。
           </p>
@@ -73,6 +74,7 @@
           <p><strong>Prompt：</strong></p>
           <pre><code>这是一个财务部专家分享内容文档，主题为关于 XXX 的资金、税务和会计核算管理，其中二、三部分目前只有大体框架，请帮我补充主体内容。请注意文字和用语的专业性，专业内容必须与相关会计准则、法律法规官方来源内容核对一致。文字风格严谨专业，符合国有企业内部要求。相关专业知识可以参考 ima 知识库：信永中和智能专业知识库。</code></pre>
           <p><strong>结果：</strong> 人上人。（模型：DSv4 Pro）早前看到 DeepSeek 语言能力不错，于是用 DeepSeek V4 Pro 来完成。首次结果内容上没什么问题，就是格式有点乱；指明要按国企事业单位格式编辑后，基本满足需求。</p>
+          <figure><img src="../assets/articles/workbuddy-finance-use-cases-02.png" alt="" loading="lazy" /></figure>
           <p><strong>评价：</strong> 省了大概 80% 时间。后续还人工复核、修改了一轮。会计、税法专业内容引用准确，分析比较全面。但是结构性不够强整体逻辑有些散乱，文章结构需要再调。</p>
 
           <h2>三、「财务 + AI」岗位查询推送</h2>
@@ -86,7 +88,9 @@ base：广东地区，优先佛山和广州；
 整理要求：表格包含公司名称、岗位名称、薪资、JD 描述、JD 链接；输出为 Excel 表格格式；岗位信息必须真实有效，链接必须直指岗位、可追溯。
 【执行要点 - 已确认的工作模式】XXX（之前在 MiniMax Code 上的记忆）</code></pre>
           <p><strong>结果：</strong> 夯（模型：Hy3）</p>
+          <figure><img src="../assets/articles/workbuddy-finance-use-cases-04.png" alt="" loading="lazy" /></figure>
           <p><strong>评价：</strong> 岗位基本真实有效（好几个是经常刷猎聘能看到的），但略微跳出了「财务 + AI」的范畴，涵盖了不少纯 BP、FPA、核算和共享财务的岗位，只有几个是涉及 AI 流程和 Agent 相关，面更广了但岗位针对性不强。</p>
+          <figure><img src="../assets/articles/workbuddy-finance-use-cases-03.png" alt="" loading="lazy" /></figure>
           <p><strong>优化：</strong> 想更聚焦的话可以继续优化 Prompt，不过只是图个乐子，就先算了。</p>
 
           <h2>四、整理合伙企业合伙协议台账</h2>
