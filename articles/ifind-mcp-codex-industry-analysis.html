@@ -44,8 +44,8 @@
         </header>
 
         <div class="post-body">
-          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-01.png" alt="" loading="lazy" /></figure>
-          <p>上周，同花顺官方发布了一篇介绍 iFinD MCP 的文章：<a href="https://mp.weixin.qq.com/s?__biz=MzkwNTI0OTIzMQ==&mid=2247553542&idx=1&sn=b2ff6a123066af6e67174139fecb3918&scene=21" target="_blank" rel="noopener">复制粘贴财报数据？那是 AI 该干的事</a>。</p>
+          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-01.png" alt="iFinD MCP 与 Codex 输出同行业分析的结果截图" loading="lazy" /></figure>
+          <p>上周，同花顺官方发布了一篇介绍 iFinD MCP 的文章：<a href="https://mp.weixin.qq.com/s?__biz=MzkwNTI0OTIzMQ==&amp;mid=2247553542&amp;idx=1&amp;sn=b2ff6a123066af6e67174139fecb3918&amp;scene=21" target="_blank" rel="noopener">复制粘贴财报数据？那是 AI 该干的事</a>。</p>
           <p>文章介绍，<strong>iFinD MCP 是同花顺投研级数据库的 MCP 化接口</strong>，能够实现：</p>
           <ul>
             <li>覆盖 A 股、公募、宏观、债券、港美股、指数、板块及公告资讯等全品类数据</li>
@@ -59,7 +59,7 @@
           <p>从服务介绍来看，个人试用版支持 2,000 次调用；个人付费版 40 元/月，多了智能选基、港美股智能选股和热门事件资讯搜索等功能。要知道公司要是订阅同花顺账号那得是大千上万一个账号的，现在部分功能可以免费使用？那不是赛博菩萨嘛，薅之。</p>
           <p>我要做的财务数据收集，试用版已经能够覆盖。</p>
           <p>注册完成后，个人中心里会提供 MCP 配置和 Skill 下载。我用的是 Codex，能够支持 MCP，因此直接调用 MCP 就好；如果是 Claw 类工具，可以用 Skill 调用。</p>
-          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-02.png" alt="" loading="lazy" /></figure>
+          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-02.png" alt="iFinD MCP 个人中心配置页面截图" loading="lazy" /></figure>
           <p>文档读不懂，搞不清 Skill 和 MCP 怎么用？没关系，把 AI 需要的东西丢给它学习，让它配置就好。</p>
           <p>直接把下面的 Prompt 丢给 Agent，再把 <code>&lt;粘贴 iFinD 个人中心获取的 MCP 配置&gt;</code> 换成自己的配置：</p>
           <pre><code>阅读 iFinD MCP 产品介绍：
@@ -69,9 +69,9 @@ https://mcp.51ifind.cn/#/docs/product-introduce，
           <p>然后 Codex 就自己调试并编写调用脚本了。</p>
           <p>自动配置时，Codex 发现 MCP 限制了并发调用，不确定是否与试用版有关，因此只能逐个查询股票，当然 Codex 自己会调整调用脚本。</p>
           <p>由于 Prompt 没写清楚，Codex 直接给了我一个带前端的工具台。也没关系，跑通了就行，下次可以在 Prompt 中指明不需要前端页面。</p>
-          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-03.png" alt="" loading="lazy" /></figure>
+          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-03.png" alt="Codex 生成 iFinD MCP 前端工具台的截图" loading="lazy" /></figure>
           <p>Codex 配置完成并测试基本功能，一共花了 21 次调用。说明基本功能没问题，接下来该让 Agent 上场干活了。</p>
-          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-04.png" alt="" loading="lazy" /></figure>
+          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-04.png" alt="iFinD MCP 调用次数统计截图" loading="lazy" /></figure>
 
           <h2>二、用一个高难度任务测试</h2>
           <p>因为用的是 Codex，我直接让它搞一个高难度项目：</p>
@@ -79,8 +79,8 @@ https://mcp.51ifind.cn/#/docs/product-introduce，
           <p>这个任务集合了公司业务信息收集、市场数据获取、财务数据获取、指标计算和 Excel 输出。</p>
           <p>其中，收入结构拆分并不是标准的结构化财报数据，Agent 需要从年报中提取，整体算是一个比较复杂的综合任务。</p>
           <p>历时 24 分 28 秒，Codex 输出了一个大致符合要求的 Excel。财报数据基本拿齐，但部分公司的收入结构没有找到，返回的结论是：<strong>"产品占比未取得可靠分产品披露时不作推测。"</strong></p>
-          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-05.png" alt="" loading="lazy" /></figure>
-          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-06.png" alt="" loading="lazy" /></figure>
+          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-05.png" alt="MLCC 行业上市公司分析 Excel 输出截图" loading="lazy" /></figure>
+          <figure><img src="../assets/articles/ifind-mcp-codex-industry-analysis-06.png" alt="同行业财务指标和收入结构整理结果截图" loading="lazy" /></figure>
           <p>回到网页查看，一共发生了 49 次调用。也就是说，5 只股票的数据收集与整理不到 30 次调用。</p>
           <p>按照这个消耗量，试用版每月 2,000 次调用，基本能满足 200 只以上个股的同等量数据查询，还算比较慷慨。</p>
           <p>当然，如果是严肃交付项目，AI 获取的数据不能直接采用。还可以结合我之前做的财报下载 Skill，让 AI 下载财报然后做一次复核，再不放心可以再做一次人工复核。<a href="annual-reports-download-skill.html">一句话批量下载上市公司定期报告的 skill</a></p>
