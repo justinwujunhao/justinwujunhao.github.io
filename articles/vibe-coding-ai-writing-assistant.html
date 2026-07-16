@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="用 Codex 计划模式 2 小时做出一个 AI 写作助手：按项目切换文风、上传参考文档做格式锚点、实时给出润色建议。"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>Vibe Coding 实践：2 小时打造最像你的 AI 写作助手｜Justin Wu</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top" aria-label="返回首页">
+        <span class="brand-mark">JW</span>
+        <span>Justin Wu</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html#notes">想法</a>
+        <a href="../index.html#writing">文章</a>
+        <a href="../index.html#projects">项目</a>
+        <a href="../index.html#about">关于</a>
+      </nav>
+    </header>
+
+    <main class="post-main">
+      <a class="back-link" href="../index.html#writing">← 返回文章</a>
+
+      <article>
+        <header class="post-header">
+          <p class="kicker">Vibe Coding / AI 写作</p>
+          <h1>Vibe Coding 实践：2 小时打造最像你的 AI 写作助手</h1>
+          <p class="lead">
+            能不能有个工具，教会 AI 参考我过去写过的文档和已沉淀的 Skill，实时给我写的文章提出修改意见？
+            拆下来三件事：按项目切文风、上传参考文档做锚点、实时修改立刻看效果。
+          </p>
+          <div class="post-meta">
+            <span>2026.07.01</span>
+            <span>Vibe Coding / AI 写作 / Codex</span>
+            <span>约 5 分钟阅读</span>
+          </div>
+        </header>
+
+        <div class="post-body">
+          <figure><img src="../assets/articles/vibe-coding-ai-writing-assistant-01.png" alt="AI 写作助手编辑器成品界面截图" loading="lazy" /></figure>
+          <p>写各种各样的报告文件应该是国企人的日常，下午在写一个汇报文档的时候脑子里冒出个念头：<strong>能不能有个工具，教会 AI 参考我过去写过的文档，和已经沉淀下来的 Skill，实时给我写的文章提出修改意见？</strong></p>
+          <p>拆了一下，这个工具至少得做到这三件事：</p>
+          <p><strong>一、按不同项目指定不同的写作风格。</strong> 换一个项目就切一套文风画像，写公众号文章的行文风格跟写国企内部报告肯定不一样，写提供给审计的会计处理备忘录跟财务分析报告也不一样。</p>
+          <p><strong>二、不需要我描述具体的风格是怎样的，上传参考文档做格式锚点。</strong> 不是泛泛的"专业一点"、"国企一点"，是有据可依的风格匹配 Prompt。</p>
+          <p><strong>三、实时修改，立刻看到效果。</strong> 不需要重复切窗口到 Chatbot 或者 Agent 复制粘贴然后等待反馈，AI 输出然后再贴回来这套动作。</p>
+
+          <h2>一、想着 Codex 额度还没用完，直接让它写</h2>
+          <p><strong>直接把想法丢给 Codex，我先在计划模式下把需求捋清楚：</strong></p>
+          <pre><code>我想做一个 AI 写作的工具，实现 AI 实时给出润色建议，AI 给出的建议会基于已有的文档或者 skill 沉淀出来的文风持续编辑。想法：
+1. 轻量化网页编辑器的形式，左边输入，右边实时高亮给出建议，上方设置 AI 开关、模型选择（可以手动接入模型 API）和极简的格式选择；
+2. 有 skill 和过往文档管理区域，作为行文风格、文档格式参考，不同项目可以选择不同的 skill 和参考文档组合；
+3. 以 markdown 文档为基底，可以选择输出 md 或者 word，输出 word 的时候再参考格式输出。</code></pre>
+          <p>Codex 连续追问了几个关键问题：初版想实现哪些功能、交互怎么设计、文风沉淀用什么模式、模型 API 怎么接。一一回复完后它给了一份完整方案。</p>
+          <figure><img src="../assets/articles/vibe-coding-ai-writing-assistant-02.png" alt="Codex 计划模式拆解 AI 写作助手需求的截图" loading="lazy" /></figure>
+          <p>想起来之前看过比较喜欢的 html-anything 这个 HTML 项目，感觉交互范式很接近，也很喜欢他的设计，让它直接参考。</p>
+
+          <h2>二、30 分钟出第一版，然后开始修</h2>
+          <p>第一版跑通了基本功能，试用下来发现几个问题。</p>
+          <p><strong>UI 不够友好。</strong> 模型输入的窗口框超界；中文字体不好看；修改前后文本区分不明显（能不能加粗、换字体、或者用卡片展示）？"确认修改"按钮没有区分度。</p>
+          <p><strong>逻辑上也有几个坑。</strong> 已经接受/拒绝的段落，重跑 AI 还会再建议修改；重复出现结构化的修改建议看着像是逻辑 Bug。</p>
+          <p>一轮一轮把问题丢给 Codex，改了改。接上 Minimax API 测试了一下，也过了。</p>
+          <p><strong>前后不到 2 小时，基本能用了。</strong></p>
+
+          <h2>三、实现了三个核心特性</h2>
+          <p><strong>一、分区显示，实时输出。</strong> 输入和修改端并排，符合 Word 的使用习惯。</p>
+          <p><strong>二、接入任意 OpenAI 格式的模型 API。</strong>（可以搭配任意 Token plan 的 API，虽然目前只测了 Minimax）</p>
+          <figure><img src="../assets/articles/vibe-coding-ai-writing-assistant-04.png" alt="AI 写作助手模型 API 配置界面截图" loading="lazy" /></figure>
+          <figure><img src="../assets/articles/vibe-coding-ai-writing-assistant-03.png" alt="AI 写作助手左右分区修改建议界面截图" loading="lazy" /></figure>
+          <p><strong>三、三类参考来源：格式参考 + 文库参考 + Skill 资产导入。</strong> 自动生成文风画像。</p>
+
+          <h2>复盘</h2>
+          <figure><img src="../assets/articles/vibe-coding-ai-writing-assistant-05.png" alt="AI 写作助手参考文档和 Skill 资产导入界面截图" loading="lazy" /></figure>
+          <p>复盘下来，有三个很深的感受。</p>
+          <p>第一，<strong>我严重低估了 AI 的能力。</strong> 原本以为这至少是一到两天的项目，结果方案设计 + 初版功能，两小时实现全跑通了。</p>
+          <p>第二，自己还没意识到自己的<strong>思维模式变了。</strong> 以前遇到想解决的痛点或者想要实现的某个功能，第一反应是"有没有相关的软件？GitHub 上有没有现成的项目？"现在第一反应是——<strong>"我自己 Vibe Coding 一个吧。"</strong></p>
+          <p>第三，<strong>尽量把时间花在计划模式里。</strong> 比如这次试用时才发现：AI 修改过的内容其实不需要重跑一次 AI。但如果这个逻辑在最初设计阶段就想到了，早就可以内置进去，省掉很多来回的消耗。</p>
+          <p>虽然大概率是一个重复造轮子的电子垃圾项目，但是在这么短时间内造出能用的（即便是轻量化）工具，还是让人挺兴奋的事情。</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Justin Wu</span>
+      <span>Finance Notes &amp; AI Builds</span>
+    </footer>
+  </body>
+</html>

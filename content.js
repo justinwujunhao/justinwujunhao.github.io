@@ -9,6 +9,55 @@ window.siteContent = {
   notes: [],
   articles: [
     {
+      tag: ["AI 工作流", "效率工具"],
+      title: "财务人最近用 WorkBuddy 做了什么",
+      summary:
+        "记录用 WorkBuddy 完成合并附注搭建、法规文档撰写、岗位查询推送和合伙协议台账整理四个真实场景的 Prompt、结果和优化方向。",
+      url: "articles/workbuddy-finance-use-cases.html",
+    },
+    {
+      tag: ["Vibe Coding", "AI 写作"],
+      title: "Vibe Coding 实践：2 小时打造最像你的 AI 写作助手",
+      summary:
+        "用 Codex 计划模式 2 小时做出一个 AI 写作助手：按项目切换文风、上传参考文档做格式锚点、实时给出润色建议。",
+      url: "articles/vibe-coding-ai-writing-assistant.html",
+    },
+    {
+      tag: ["AI 工具", "Agent"],
+      title: "我真心推荐每一个财务人下载一个 WorkBuddy",
+      summary:
+        "AI Agent 已经足够简化强大。WorkBuddy 把外部咨询「聘」到公司内部，零门槛接入腾讯生态、国内模型和连接器，是财务人上手 AI 的好起点。",
+      url: "articles/recommend-workbuddy-for-finance.html",
+    },
+    {
+      tag: ["AI 工作流", "iFinD MCP"],
+      title: "财经界的赛博菩萨：iFinD MCP 配合 Codex，半小时输出同行业分析",
+      summary:
+        "用同花顺 iFinD MCP 配合 Codex，半小时完成 MLCC 行业 5 只代表标的的同行业分析，覆盖公司信息、市值、财务指标和收入结构。",
+      url: "articles/ifind-mcp-codex-industry-analysis.html",
+    },
+    {
+      tag: ["知识库", "ima"],
+      title: "看了五分钟 ima 的介绍，我决定放弃飞书知识库",
+      summary:
+        "从飞书知识库迁移到腾讯 ima：2.6 万个知识文档跨库索引、Agent 支持、外接模型 API，专业知识壁垒正在被消灭。",
+      url: "articles/ima-knowledge-base-vs-feishu.html",
+    },
+    {
+      tag: ["Vibe Coding", "简历"],
+      title: "不用羡慕程序员，财务也能画高级科技感的 html 简历",
+      summary:
+        "一份原始简历 + 一个参考风格模板 + 一个 coding agent = 高级科技感的 HTML 简历。财务人不需要会任何代码。",
+      url: "articles/html-resume-for-finance.html",
+    },
+    {
+      tag: ["AI 工具", "Skill"],
+      title: "一句话批量下载上市公司定期报告的 skill",
+      summary:
+        "一个可以批量下载上市公司定期报告的 Skill：把链接贴给 Agent，告诉它参考 Skill 下载指定公司和期间的定期报告即可。",
+      url: "articles/annual-reports-download-skill.html",
+    },
+    {
       tag: ["AI 工作流", "财税实务", "文档生成"],
       title: "ChatGPT+Codex，从领导一句话到生成全套税务专项检查文件",
       summary: "记录一次内部税务专项检查材料的生成、修改和核验流程，实现从领导一句话到可落地文件体系的完整工作流。",
