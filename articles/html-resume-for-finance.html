@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="一份原始简历 + 一个参考风格模板 + 一个 coding agent = 高级科技感的 HTML 简历。财务人不需要会任何代码。"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>不用羡慕程序员，财务也能画高级科技感的 html 简历｜Justin Wu</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top" aria-label="返回首页">
+        <span class="brand-mark">JW</span>
+        <span>Justin Wu</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html#notes">想法</a>
+        <a href="../index.html#writing">文章</a>
+        <a href="../index.html#projects">项目</a>
+        <a href="../index.html#about">关于</a>
+      </nav>
+    </header>
+
+    <main class="post-main">
+      <a class="back-link" href="../index.html#writing">← 返回文章</a>
+
+      <article>
+        <header class="post-header">
+          <p class="kicker">Vibe Coding / 简历</p>
+          <h1>不用羡慕程序员，财务也能画高级科技感的 html 简历</h1>
+          <p class="lead">
+            一份原始简历 + 一个参考风格模板 + 一个 coding agent = 高级科技感的 HTML 简历。
+            你不需要会任何代码。
+          </p>
+          <div class="post-meta">
+            <span>2026.06.09</span>
+            <span>Vibe Coding / 简历 / Minimax Code</span>
+            <span>约 4 分钟阅读</span>
+          </div>
+        </header>
+
+        <div class="post-body">
+          <blockquote>
+            一份原始简历 + 一个参考风格模板 + 一个 coding agent = 高级科技感的 HTML 简历。你不需要会任何代码。
+          </blockquote>
+
+          <h2>首先，为什么是 HTML</h2>
+          <p>传统简历一般是 Word 或 PDF。它们当然够用，但会有以下缺点导致不够好：</p>
+          <ul>
+            <li>容易文字堆砌，重点不突出；</li>
+            <li>格式死板，编辑困难；</li>
+            <li><strong>不够 AI native。</strong></li>
+          </ul>
+          <p>早前看过一句话：</p>
+          <blockquote>你怎么相信还在手搓 PPT 的咨询顾问能为你的企业进行 AI 提效？</blockquote>
+          <p>因此同理，咱财务狗要显得自己 AI native，首先可以扔掉你丑丑的 word 简历。</p>
+          <p>HTML 简历本质上是一张<strong>网页</strong>。它可以用卡片、时间轴、颜色和不同的信息层级，把个人经历组织得更清楚。最重要的是，这是 AI 和人类都能读懂的高质量格式——这意味着你所有的修改意见反馈给 AI，可以随时让 AI 调整字号、间距和模块，而你自己浏览器打开就能看。</p>
+          <p>写 HTML 在古时候这是程序员的活儿。即便你找到合适的模板，也必须会写一点 HTML 和 CSS 才能实现以上功能。AI agent 出现以后，写代码的环节直接被跳过了，你的流程变成了：</p>
+          <ul>
+            <li>找到合适的参考；</li>
+            <li>把你的简历和模板链接丢给 AI，把想要的效果说清楚；</li>
+            <li>判断生成结果哪里不对；</li>
+            <li>继续迭代修改，输出 PDF 格式。</li>
+          </ul>
+
+          <h2>第一步：如果你没有 coding agent，先安装一个</h2>
+          <p>安装一个 Coding agent，可以是 Codex / Claude Code / Kimi Code / Minimax Code，我这里展示用的是 Minimax Code。</p>
+
+          <h2>第二步：先找一个参考的 html 项目</h2>
+          <p>现在优质的 HTML 开源内容越来越多，我参考的是 GitHub 上的开源项目 <a href="https://github.com/salomonelli/best-resume-ever" target="_blank" rel="noopener">/salomonelli/best-resume-ever</a>。</p>
+          <p>电脑上任意指定一个文件夹，把 word 简历（比如我的叫：中文简历-哈基米.docx）放进去，然后把参考项目链接和自己的简历文档一起交给 agent，先让 agent 生成一版试试，prompt：</p>
+          <pre><code>参考项目：https://github.com/salomonelli/best-resume-ever ，把我的简历（@中文简历-哈基米.docx）修改为 HTML 格式。要求：
+1. 聚焦最近两段工作经历，重点突出，第一段工作经历可以总结缩略；
+2. 着重展示重点数据，满足财务核算、合并报表类岗位的要求；
+3. 字体清晰，可读性强，满足 A4 一页内打印的需求。</code></pre>
+          <p>agent 先理解我的简历内容和参考项目，再生成了一个独立的单页 HTML。基础版本采用左侧信息栏、右侧经历主线，并考虑了浏览器打印和 A4 展示。</p>
+          <p>总的来看<strong>基本雏形有了</strong>，但还是有几个地方不太喜欢包括没有头像和有点格式问题，把头像照片放进文件夹后，继续发指令修改。</p>
+          <pre><code>修改以下地方：
+1. 增加我的头像照片（@cat-avatar.jpg）；
+2. 工作经历中不需要有绿底高亮的关键词，正常加粗即可；
+3. 下方还有留白，字体可以调大 1-2 个字号。</code></pre>
+          <p>修改完后基本可用，相比 word 版本简历重点突出，排版更好看，整体颜色也协调。</p>
+
+          <h2>第三步：浏览器打开，另存为 PDF，搞定</h2>
+          <p>HTML 在浏览器里显示得不错，Ctrl + P 打印另存为 PDF 导出看着也没问题，收工。</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Justin Wu</span>
+      <span>Finance Notes &amp; AI Builds</span>
+    </footer>
+  </body>
+</html>
