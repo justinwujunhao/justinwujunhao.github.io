@@ -97,5 +97,12 @@ window.siteContent = {
       url: "projects/gaap-compare.html",
       labels: ["PRC GAAP", "IFRS", "US GAAP", "AI 条文映射"],
     },
+    {
+      icon: "▤",
+      title: "CAS 30 新旧准则差异速查手册",
+      summary: "对照 2026 年新修订 CAS 30 与原准则，集中查看实施时间、报表变化、衔接安排和实务风险。",
+      url: "projects/cas30-guide.html",
+      labels: ["CAS 30", "财务报表列报", "准则速查"],
+    },
   ],
 };

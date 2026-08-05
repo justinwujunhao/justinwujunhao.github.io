@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAS 30 财务报表列报 · 新旧准则差异速查手册</title>
+<style>
+:root{
+  --bg:#f2f4f7; --card:#ffffff; --line:#e2e6ec; --ink:#1c2733; --sub:#5b6b7b;
+  --brand:#1f4e79; --brand-2:#2f6fb0; --accent:#0e8a6d;
+  --off:#b26a00; --inf:#6b7280; --warn-bg:#fdf6ec; --ok-bg:#eef7f1; --hdr:#eaf1f8;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,sans-serif; font-size:14px; line-height:1.65;}
+.wrap{max-width:1180px; margin:0 auto; padding:0 18px 60px;}
+
+/* header */
+header{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-2) 100%); color:#fff; padding:26px 0 22px; margin-bottom:0;}
+header .inner{max-width:1180px; margin:0 auto; padding:0 18px;}
+header h1{font-size:22px; font-weight:700; letter-spacing:.5px;}
+header .sub{margin-top:6px; font-size:13px; opacity:.9;}
+.badges{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;}
+.badge{display:inline-block; padding:2px 10px; border-radius:20px; font-size:12px; font-weight:600; color:#fff;}
+.b-official{background:var(--accent);}
+.b-pending{background:var(--off);}
+.b-info{background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.45);}
+.b-update{background:#c0392b;}
+
+/* tabs */
+.tabs{position:sticky; top:0; z-index:50; background:var(--card); border-bottom:1px solid var(--line); box-shadow:0 1px 4px rgba(31,78,121,.06);}
+.tabs .inner{max-width:1180px; margin:0 auto; padding:0 18px; display:flex; gap:2px; overflow-x:auto; white-space:nowrap; scrollbar-width:thin;}
+.tab{padding:12px 14px 11px; font-size:13.5px; color:var(--sub); cursor:pointer; border:none; background:none; border-bottom:3px solid transparent; font-family:inherit; transition:.15s;}
+.tab:hover{color:var(--brand);}
+.tab.active{color:var(--brand); border-bottom-color:var(--brand); font-weight:600;}
+
+/* search */
+.searchbar{max-width:1180px; margin:14px auto 0; padding:0 18px;}
+.searchbar input{width:100%; max-width:420px; padding:8px 14px; border:1px solid var(--line); border-radius:8px; font-size:13px; outline:none; background:#fff;}
+.searchbar input:focus{border-color:var(--brand-2); box-shadow:0 0 0 3px rgba(47,111,176,.12);}
+mark.hl{background:#ffe58f; color:inherit; padding:0 1px; border-radius:2px;}
+
+/* layout */
+main{margin-top:18px;}
+.page{display:none;}
+.page.active{display:block; animation:fade .25s ease;}
+@keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
+.sect{margin-top:22px;}
+.sect-title{font-size:16px; font-weight:700; color:var(--brand); padding-left:10px; border-left:4px solid var(--brand); margin-bottom:12px;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin-bottom:14px;}
+.card h4{font-size:14.5px; color:var(--ink); margin-bottom:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+.card p{color:var(--sub);}
+.card ul{padding-left:20px; color:var(--sub);}
+.card li{margin:4px 0;}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media(max-width:860px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+.kv{display:grid; grid-template-columns:110px 1fr; gap:2px 14px; font-size:13.5px;}
+.kv .k{color:var(--sub); font-weight:600;}
+.kv .v{color:var(--ink);}
+
+table{width:100%; border-collapse:collapse; font-size:13px; background:#fff;}
+th,td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top;}
+th{background:var(--hdr); color:var(--brand); font-weight:600; white-space:nowrap;}
+tr:nth-child(even) td{background:#fafbfd;}
+.tag{display:inline-block; padding:0 8px; border-radius:4px; font-size:12px; font-weight:600; margin-right:6px;}
+.t-new{background:#e3f2e9; color:#0e7a52;}
+.t-keep{background:#eef0f3; color:#5b6b7b;}
+.t-move{background:#e8f0fa; color:#1f4e79;}
+.t-warn{background:#fdeeea; color:#c0392b;}
+.t-info{background:#eef0f3; color:#5b6b7b;}
+
+.flow{background:#fff; border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:8px; padding:14px 16px; font-size:13.5px;}
+.flow .l{margin:3px 0; color:var(--ink);}
+.flow .tot{font-weight:700; color:var(--brand); margin:6px 0 6px 8px;}
+.flow .note{color:var(--sub); font-size:12.5px; margin-left:8px;}
+
+.legend{display:flex; flex-wrap:wrap; gap:14px; margin:10px 0 14px; font-size:12.5px; color:var(--sub);}
+.legend span{display:inline-flex; align-items:center; gap:5px;}
+
+footer{margin-top:34px; padding-top:14px; border-top:1px solid var(--line); color:var(--sub); font-size:12px; line-height:1.7;}
+@media print{
+  body{background:#fff;}
+  .tabs,.searchbar,header .badges{display:none;}
+  .page{display:block !important;}
+  .card{break-inside:avoid;}
+}
+@media(max-width:680px){
+  .wrap{padding-left:12px; padding-right:12px;}
+  table{display:block; overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .kv{grid-template-columns:92px 1fr; gap:4px 10px;}
+  header h1{font-size:19px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <h1>CAS 30 财务报表列报 · 新旧准则差异速查手册</h1>
+    <div class="sub">财会〔2026〕11号（2026-07-24印发，2026-08-05发布）vs 财会〔2014〕7号 ｜ 对标 IFRS 18 ｜ 核校日期：2026-08-05</div>
+    <div class="badges">
+      <span class="badge b-official">官方口径</span>
+      <span class="badge b-pending">待确认</span>
+      <span class="badge b-info">推断/参照</span>
+      <span class="badge b-update">配套报表格式待发布</span>
+    </div>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="inner" id="tabbar" role="tablist" aria-label="速查手册章节">
+    <button type="button" class="tab active" id="tab-p1" role="tab" aria-selected="true" aria-controls="p1" data-page="p1">① 版本与实施</button>
+    <button type="button" class="tab" id="tab-p2" role="tab" aria-selected="false" aria-controls="p2" data-page="p2">② 核心差异</button>
+    <button type="button" class="tab" id="tab-p3" role="tab" aria-selected="false" aria-controls="p3" data-page="p3">③ 资产负债表</button>
+    <button type="button" class="tab" id="tab-p4" role="tab" aria-selected="false" aria-controls="p4" data-page="p4">④ 利润表</button>
+    <button type="button" class="tab" id="tab-p5" role="tab" aria-selected="false" aria-controls="p5" data-page="p5">⑤ 现金流量表</button>
+    <button type="button" class="tab" id="tab-p6" role="tab" aria-selected="false" aria-controls="p6" data-page="p6">⑥ 衔接与分录</button>
+    <button type="button" class="tab" id="tab-p7" role="tab" aria-selected="false" aria-controls="p7" data-page="p7">⑦ 实施路线图</button>
+    <button type="button" class="tab" id="tab-p8" role="tab" aria-selected="false" aria-controls="p8" data-page="p8">⑧ 风险与难点</button>
+    <button type="button" class="tab" id="tab-p9" role="tab" aria-selected="false" aria-controls="p9" data-page="p9">⑨ 依据与提示</button>
+  </div>
+</div>
+
+<div class="searchbar">
+  <input id="q" type="search" aria-label="在当前章节中搜索" placeholder="在当前页中搜索关键词（如：经营利润 / 契约条件 / MPM / 2029）…">
+</div>
+
+<main class="wrap">
+
+<!-- ================= 页1 版本与实施 ================= -->
+<section class="page active" id="p1" role="tabpanel" aria-labelledby="tab-p1">
+  <div class="grid2">
+    <div class="card">
+      <h4><span class="tag t-keep">版本</span>新旧准则对照</h4>
+      <div class="kv">
+        <div class="k">旧准则</div><div class="v">财会〔2014〕7号（前身为2006年版），现行执行基准</div>
+        <div class="k">新准则</div><div class="v"><b>财会〔2026〕11号</b>，2026年7月24日印发、8月5日发布</div>
+        <div class="k">对标</div><div class="v">IFRS 18（IASB 2024-04发布，2027-01-01全球生效）</div>
+        <div class="k">修订性质</div><div class="v">仅涉及<b>列示与披露</b>，不涉及确认和计量<span class="tag t-new" style="margin-left:6px">官方</span></div>
+        <div class="k">关键口径</div><div class="v">损益重分类本身通常不改变净利润；第七十条权益法转FVTPL的可选政策变更除外。资产负债表、现金流量表和权益变动表不是本次结构性改革重点</div>
+      </div>
+    </div>
+    <div class="card">
+      <h4><span class="tag t-move">时间表</span>分步实施（允许提前执行）</h4>
+      <table>
+        <tr><th>企业类型</th><th>实施日</th></tr>
+        <tr><td>境内外同时上市；境外上市采用 IFRS 或企业会计准则编报</td><td><b>2027-01-01</b></td></tr>
+        <tr><td>其他境内上市企业（两年过渡期）</td><td><b>2029-01-01</b></td></tr>
+        <tr><td>执行企业会计准则的非上市企业（再加一年）</td><td><b>2030-01-01</b></td></tr>
+        <tr><td>有条件的企业</td><td>允许提前执行</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sect"><div class="sect-title">配套文件状态（以官方口径为准）</div></div>
+  <table>
+    <tr><th>配套事项</th><th>状态</th><th>对企业的影响</th></tr>
+    <tr><td>新列报准则正式文本（财会〔2026〕11号）</td><td><span class="tag t-new">已公开</span>2026-08-05</td><td>财政部已公开71条正式文本；本手册以正式文本为条文级依据</td></tr>
+    <tr><td>利润表等四张报表格式文件</td><td><span class="tag t-warn">未发布</span></td><td>格式落地前系统改造需保留弹性；当前可参考2025年12月征求意见稿格式</td></tr>
+    <tr><td>新列报准则应用指南</td><td><span class="tag t-warn">起草中</span></td><td>填列规则、分类细则将以指南为准</td></tr>
+    <tr><td>会计科目体系修订</td><td><span class="tag t-warn">修订中</span></td><td>科目—报表项目对应关系将变化，科目表改造需跟进</td></tr>
+    <tr><td>培训课程（全国会计人员统一服务管理平台）</td><td><span class="tag t-info">近期上线</span></td><td>官方解读免费课程，可用于内部培训</td></tr>
+  </table>
+
+  <div class="sect"><div class="sect-title">本次修订四大核心内容（官方答记者问）</div></div>
+  <div class="grid2">
+    <div class="card"><h4>① 优化利润表结构</h4><p>当期损益分经营、投资、筹资、所得税费用、终止经营<b>五类</b>；新增经营利润、经营及投资利润、持续经营利润等合计项目；特定主要业务活动企业（金融/保险等）相关损益归入经营类。</p></div>
+    <div class="card"><h4>② 引入管理层业绩指标（MPM）披露</h4><p>报表外正式公开使用的非准则损益类合计项，须在附注单独披露内涵、计算方式及调节信息。</p></div>
+    <div class="card"><h4>③ 明确汇总与分解原则</h4><p>共同特征汇总、不同特征分解；归集方式不得模糊重要信息或降低可理解性。</p></div>
+    <div class="card"><h4>④ 完善"重要性"定义</h4><p>省略、错报之外新增<b>"模糊处理"</b>要件，与《企业可持续披露准则——基本准则》保持一致。</p></div>
+  </div>
+</section>
+
+<!-- ================= 页2 核心差异 ================= -->
+<section class="page" id="p2" role="tabpanel" aria-labelledby="tab-p2">
+  <div class="legend"><span>🟩 官方口径</span><span>🟧 待确认</span><span>⬜ 推断/参照（IFRS 18 或行业惯例）</span></div>
+  <div class="grid2">
+    <div class="card"><h4>1. 利润表结构性重构 <span class="tag t-new">核心</span></h4>
+      <ul>
+        <li>五分类：经营 / 投资 / 筹资 / 所得税费用 / 终止经营（前四类=持续经营损益）</li>
+        <li>正式稿合计项目链条：经营利润、经营及投资利润、持续经营利润、利润总额、净利润</li>
+        <li>“营业利润”被“经营利润”等新指标取代；“利润总额”仍为强制合计项目；原财务费用需按损益来源拆分</li>
+        <li>经营类费用仍按功能列示（成本/销售/管理/研发），附注补充按性质披露</li>
+      </ul>
+    </div>
+    <div class="card"><h4>2. 管理层业绩指标（MPM）首次纳入附注</h4>
+      <ul>
+        <li>触发条件：报表外<b>正式公开书面资料</b>中使用非准则要求的损益类合计项目，用于表达管理层对整体业绩的看法；该指标须同时包含收入（或利得）与费用（或损失），且报告期间与财务报表一致</li>
+        <li>披露内容：原因说明、计算方式、与最接近准则合计项目的调节表、调节项所得税及少数股东影响</li>
+        <li>例外：毛利或类似合计项目，以及扣除折旧、摊销和CAS 8资产减值损失前的经营利润，不属于MPM；准则强制列示的权益法其中项也不满足MPM定义</li>
+        <li>变更口径/新增停用须披露并重述比较信息</li>
+      </ul>
+    </div>
+    <div class="card"><h4>3. 汇总与分解原则 <span class="tag t-new">官方</span></h4>
+      <ul>
+        <li>按共有特征（性质/功能/计量基础）汇总为项目，按不同特征分解</li>
+        <li>汇总分解不得使重要信息被"模糊处理"；重要信息未入基本报表的须在附注披露</li>
+        <li>无论项目名称如何，重要信息未在基本财务报表中列示的，均须在附注披露</li>
+      </ul>
+    </div>
+    <div class="card"><h4>4. 重要性：新增"模糊处理"要件</h4>
+      <ul>
+        <li>定义：省略、错报或<b>模糊处理</b>会影响使用者决策 → 该项目具有重要性</li>
+        <li>模糊处理示例：描述不清晰、信息分布分散、不当汇总/分解、被非重要信息隐藏</li>
+        <li>判断标准一经确定不得随意变更</li>
+      </ul>
+    </div>
+    <div class="card"><h4>5. 负债流动性划分实质化</h4>
+      <ul>
+        <li>流动负债判断改"<b>实质性权利</b>"标准（与解释第17号衔接）</li>
+        <li>契约条件双轨：报告日或之前应遵循的条件影响划分；日后才应遵循的不影响</li>
+        <li>以自身权益工具清偿条款（已按金融工具列报准则分拆为权益的）不影响划分</li>
+        <li>展期判断收紧：报告日"有权利"展期方可归非流动</li>
+      </ul>
+    </div>
+    <div class="card"><h4>6. 现金流量表 / 权益变动表</h4>
+      <ul>
+        <li>官方口径：<b>改动较小</b>；准则正文未设现金流量表专章，编制仍遵循 CAS 31</li>
+        <li>现金流量表格式未发布 → 利息/股利现金流是否随损益分类调整，<span class="tag t-warn">待确认</span></li>
+        <li>所有者权益变动表的最低列示要求基本延续旧准则，没有结构性重构</li>
+      </ul>
+    </div>
+    <div class="card"><h4>7. 资产负债表单列项目更新</h4>
+      <ul>
+        <li>资产类 14→<b>18</b> 项、负债类 12→<b>14</b> 项、权益类 4→<b>6</b> 项（详见页③）</li>
+        <li>多属"现行报表格式已实践、本次提升为准则最低要求"（法定化）</li>
+        <li>混合列报方式、跨期金额披露要求在2014年准则中已经存在，本次继续保留</li>
+      </ul>
+    </div>
+    <div class="card"><h4>8. 衔接规定 <span class="tag t-new">官方</span></h4>
+      <ul>
+        <li>追溯调整：按新准则调整列报项目，报表及附注比较数据相应调整（不切实可行除外）</li>
+        <li>首次执行：披露最近可比期间利润表各单列项目调节信息（新口径重述 vs 财会〔2014〕7号口径）</li>
+        <li>权益法→公允价值（FVTPL）选择权：限符合 CAS 2 第三条第(二)项企业（如风险投资机构、共同基金），首次执行日一次性决策，变更按 CAS 28 追溯</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 页3 资产负债表 ================= -->
+<section class="page" id="p3" role="tabpanel" aria-labelledby="tab-p3">
+  <div class="sect"><div class="sect-title">资产类最低单列项目：14 → 18 项</div></div>
+  <table>
+    <tr><th>新准则项目</th><th>旧准则</th><th>说明</th></tr>
+    <tr><td>货币资金 / 应收款项 / 预付款项 / 存货</td><td><span class="tag t-keep">保留</span></td><td>—</td></tr>
+    <tr><td>交易性金融资产</td><td><span class="tag t-move">更新名称</span></td><td>对应旧准则“以公允价值计量且其变动计入当期损益的金融资产”</td></tr>
+    <tr><td>合同资产</td><td><span class="tag t-new">新增</span></td><td>对应收入准则</td></tr>
+    <tr><td>持有待售的非流动资产及处置组中的资产</td><td><span class="tag t-keep">保留</span></td><td>旧准则已要求单列；本次文字与CAS 42衔接</td></tr>
+    <tr><td>债权投资 / 其他债权投资</td><td><span class="tag t-move">更新分类</span></td><td>替代旧准则“持有至到期投资 / 可供出售金融资产”等旧分类名称</td></tr>
+    <tr><td>长期股权投资 / 投资性房地产 / 固定资产 / 生物资产 / 无形资产</td><td><span class="tag t-keep">保留</span></td><td>—</td></tr>
+    <tr><td>其他权益工具投资</td><td><span class="tag t-new">新增</span></td><td>对应金融工具准则</td></tr>
+    <tr><td>使用权资产</td><td><span class="tag t-new">新增</span></td><td>对应租赁准则</td></tr>
+    <tr><td>商誉</td><td><span class="tag t-new">新增</span></td><td>对应企业合并准则</td></tr>
+    <tr><td>递延所得税资产</td><td><span class="tag t-keep">保留</span></td><td>—</td></tr>
+  </table>
+
+  <div class="sect"><div class="sect-title">负债类（14项）与权益类（6项）</div></div>
+  <div class="grid2">
+    <div class="card"><h4>负债类最低单列项目：12 → 14 项</h4>
+      <table>
+        <tr><th>项目</th><th>与旧准则比较</th></tr>
+        <tr><td>交易性金融负债</td><td>更新旧项目名称，与金融工具准则衔接</td></tr>
+        <tr><td>合同负债</td><td>新增，与收入准则衔接</td></tr>
+        <tr><td>持有待售的处置组中的负债</td><td>保留，旧准则已要求单列</td></tr>
+        <tr><td>租赁负债</td><td>新增，与租赁准则衔接</td></tr>
+      </table>
+      <p style="margin-top:8px">其余保留：短期借款、应付款项、预收款项、应付职工薪酬、应交税费、长期借款、应付债券、长期应付款、预计负债、递延所得税负债。</p>
+    </div>
+    <div class="card"><h4>权益类新增项</h4>
+      <table>
+        <tr><th>项目</th><th>说明</th></tr>
+        <tr><td>其他权益工具</td><td>新增</td></tr>
+        <tr><td>其他综合收益</td><td>新增（OCI单列）</td></tr>
+        <tr><td>实收资本（股本）/ 资本公积 / 盈余公积 / 未分配利润</td><td>保留</td></tr>
+      </table>
+      <p style="margin-top:8px">合并资产负债表单独列示少数股东权益。</p>
+    </div>
+  </div>
+
+  <div class="sect"><div class="sect-title">填列逻辑变化（重点）</div></div>
+  <div class="grid2">
+    <div class="card"><h4>流动负债判断（实质权利标准）</h4>
+      <ul>
+        <li>资产负债表日<b>没有实质性权利</b>将清偿推迟至日后一年以上 → 流动负债</li>
+        <li>行使权利的主观可能性不影响划分；计划提前清偿/已提前清偿均不影响</li>
+        <li>企业正常营业周期中的经营性负债（如应付账款、应付职工薪酬）即使超过一年清偿仍归流动</li>
+      </ul>
+    </div>
+    <div class="card"><h4>契约条件（贷款安排负债）</h4>
+      <ul>
+        <li>报告日<b>或之前</b>应遵循的条件（即使日后才评估）→ 影响划分判断</li>
+        <li>报告日<b>之后</b>才应遵循的条件（如按日后6个月财务状况评估）→ 不影响划分</li>
+        <li>违约导致贷款人可随时要求清偿 → 流动负债；报告日或之前获一年以上宽限期、期间能够改正且贷款人不能随时要求清偿 → 非流动</li>
+      </ul>
+    </div>
+    <div class="card"><h4>展期与权益工具清偿</h4>
+      <ul>
+        <li>展期：报告日"有权利"展期至一年以上 → 非流动；报告日后才签的重新安排协议不影响</li>
+        <li>条款导致以自身权益工具清偿、且该选择权已按金融工具列报准则单独确认为权益 → 不影响流动性划分</li>
+      </ul>
+    </div>
+    <div class="card"><h4>列报方式与跨期披露（延续规定）</h4>
+      <ul>
+        <li>金融企业等可按流动性顺序列示；多种经营企业可采用"混合列报"</li>
+        <li>同时含一年内与一年后收回/清偿金额的单列项目 → 披露超一年后金额</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 页4 利润表 ================= -->
+<section class="page" id="p4" role="tabpanel" aria-labelledby="tab-p4">
+  <div class="sect"><div class="sect-title">正式准则最低合计项目链条（最终行次以配套利润表格式为准）</div></div>
+  <div class="flow">
+    <div class="l">经营类别：经营收入、经营成本、税金及附加、销售/管理/研发费用，以及按照分类原则归入经营类的减值、处置等损益</div>
+    <div class="tot">经营利润【新增强制合计项目】</div>
+    <div class="l">加：投资类别损益（包括符合条件的投资收益、利息收入等）</div>
+    <div class="tot">经营及投资利润【新增强制合计项目】</div>
+    <div class="note">其中：经营利润及以权益法核算的投资产生的收益（正式准则第三十五条要求列示，并非可选）</div>
+    <div class="l">加/减：筹资类别损益（包括符合条件的利息费用等）</div>
+    <div class="tot">持续经营利润【持续经营损益扣除所得税影响前】</div>
+    <div class="l">加：终止经营利润</div>
+    <div class="tot">利润总额</div>
+    <div class="l">减：所得税费用</div>
+    <div class="tot">净利润</div>
+    <div class="l">加：其他综合收益的税后净额（不能重分类 / 满足条件将重分类进损益）</div>
+    <div class="tot">综合收益总额</div>
+    <div class="note">提示：正式准则未设置“持续经营净利润”强制合计项目，也未将“经营及投资利润”命名为“筹资和所得税前利润”。</div>
+  </div>
+
+  <div class="sect"><div class="sect-title">旧项目 → 新类别 迁移规则</div></div>
+  <table>
+    <tr><th>旧利润表项目</th><th>新准则去向</th><th>要点</th></tr>
+    <tr><td>营业收入 / 营业成本</td><td>经营收入 / 经营成本（经营类）</td><td>—</td></tr>
+    <tr><td>税金及附加、销售/管理/研发费用</td><td>经营类（按功能列示）</td><td>附注补充按性质披露（原材料、职工薪酬、折旧、摊销）</td></tr>
+    <tr><td><b>财务费用</b></td><td><span class="tag t-move">拆分</span>一般企业的现金及现金等价物利息收入通常进投资类；符合条件的负债利息费用进筹资类；汇兑差额原则上跟随基础项目</td><td>不能把原“财务费用”科目整体映射到一个类别</td></tr>
+    <tr><td>投资收益</td><td>通常归投资类；符合特定主要业务活动规则且未采用权益法的部分可归经营类</td><td>采用权益法核算的联营、合营投资损益始终归投资类</td></tr>
+    <tr><td>公允价值变动收益</td><td>按产生损益的资产、负债或衍生工具分类，并非一律归投资类</td><td>套期及风险管理衍生工具适用正式准则第五十六至五十八条</td></tr>
+    <tr><td>信用/资产减值损失</td><td><span class="tag t-move">按来源拆分</span>可进入经营类或投资类</td><td>一般企业的经营性应收款项通常归经营类；特定投资资产及特定主要业务活动另行判断</td></tr>
+    <tr><td>非流动资产处置损益</td><td>原则上跟随相关资产原损益类别；资产组按正式准则第五十三条判断</td><td>不能一概归为经营类</td></tr>
+    <tr><td>其他收益</td><td>按基础交易、资产或负债的性质归入适当损益类别</td><td>不得直接整体映射为经营类</td></tr>
+    <tr><td>营业外收入 / 营业外支出</td><td>按交易或事项性质归入适当类别；未归入其他四类的损益归经营类</td><td>最终项目名称及行次以配套利润表格式为准 <span class="tag t-warn">待确认</span></td></tr>
+    <tr><td>营业利润 / 利润总额</td><td>“营业利润”退出强制合计链条；“利润总额”保留但定义和位置变化</td><td>新链条为“经营利润→经营及投资利润→持续经营利润→利润总额→净利润”</td></tr>
+  </table>
+
+  <div class="sect"><div class="sect-title">特定行业例外</div></div>
+  <div class="grid3">
+    <div class="card"><h4>以"投资特定资产"为主要业务活动</h4><p>符合正式准则第四十五、四十六条的投资性主体、投资性房地产企业等，相关特定资产损益可归经营类；采用权益法核算的联营、合营投资损益始终归投资类。</p></div>
+    <div class="card"><h4>以"向客户提供融资"为主要业务活动</h4><p>银行等：与融资相关的损益归经营类；无关的现金及现金等价物与纯筹资负债损益可会计政策选择（与经营/投资、经营/筹资联动绑定）。</p></div>
+    <div class="card"><h4>保险与参与分红特征合同</h4><p>保险财务损益、具有参与分红特征的投资合同相关负债损益归经营类。</p></div>
+  </div>
+  <div class="card"><h4>合并报表判断</h4><p>特定主要业务活动在<b>集团合并层面</b>整体判断（新准则第五十条），集团与单体的判断结论可能不同——控股平台型集团尤需注意。</p></div>
+</section>
+
+<!-- ================= 页5 现金流量表 ================= -->
+<section class="page" id="p5" role="tabpanel" aria-labelledby="tab-p5">
+  <div class="grid2">
+    <div class="card"><h4>官方口径 <span class="tag t-new">官方</span></h4>
+      <ul>
+        <li>起草说明：现金流量表<b>"改动较小"</b></li>
+        <li>准则正文未设现金流量表专章，编制仍遵循《企业会计准则第31号——现金流量表》</li>
+        <li>四张报表格式文件（含现金流量表格式）<b>尚未发布</b>，不得将征求意见稿格式当作正式口径</li>
+      </ul>
+    </div>
+    <div class="card"><h4>IFRS 18 国际趋同参照 <span class="tag t-warn">待国内格式确认</span></h4>
+      <ul>
+        <li>经营活动现金流量以"经营利润"为起点（间接法调节起点由净利润改为经营利润）</li>
+        <li>IFRS 18对IAS 7作出后续修订：无特定主要业务活动的企业通常将利息和股利收入列入投资活动，将利息和股利支付列入筹资活动；从事特定主要业务活动的企业对每类项目采用单一分类</li>
+        <li>若国内采纳，现行"取得投资收益收到的现金""分配股利、利润或偿付利息支付的现金"等行次分类将调整</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card"><h4>企业可提前准备（低成本动作）</h4>
+    <ul>
+      <li>梳理利息收入/费用、股利收支现金流量的<b>现行分类台账</b>，评估切换影响面</li>
+      <li>跟踪财政部格式文件发布，<b>勿提前切换</b>编制口径</li>
+      <li>关注中报（CAS 32）与年报的衔接节奏</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 页6 衔接与分录 ================= -->
+<section class="page" id="p6" role="tabpanel" aria-labelledby="tab-p6">
+  <div class="sect"><div class="sect-title">衔接处理框架（正式准则第六十八至七十条）</div></div>
+  <div class="grid3">
+    <div class="card"><h4>① 追溯调整</h4><p>按新准则调整列报项目；报表及附注比较数据（最近一个可比年度）相应调整；<b>调整不切实可行的除外</b>（须披露原因）。</p></div>
+    <div class="card"><h4>② 首次执行调节披露</h4><p>披露最近可比期间利润表各单列项目调节信息：新口径重述金额 vs 财会〔2014〕7号口径金额；当期及更早期间可自愿延伸。</p></div>
+    <div class="card"><h4>③ 权益法→公允价值选择权</h4><p>限符合 CAS 2 第三条第(二)项企业（风险投资机构、共同基金等），首次执行日一次性决策，变更按 CAS 28 追溯调整。</p></div>
+  </div>
+
+  <div class="sect"><div class="sect-title">调整分录要点</div></div>
+  <div class="grid2">
+    <div class="card"><h4>一般情形：无需调整分录</h4>
+      <p>本次修订不涉及确认与计量，首次执行本质是<b>列报重分类＋追溯重述</b>。工作重心：</p>
+      <ul>
+        <li>建立"科目 → 损益类别（经营/投资/筹资/所得税/终止经营）"三层映射表</li>
+        <li>总账科目打类别标签，通过取数口径完成报表重列</li>
+      </ul>
+    </div>
+    <div class="card"><h4>权益法变更（处理原则）</h4>
+      <div class="flow" style="border-left-color:var(--off)">
+        <div class="l">终止按权益法核算，并按CAS 22将相关投资追溯计量为以公允价值计量且其变动计入当期损益的金融资产</div>
+        <div class="l">按照CAS 28追溯采用该会计政策变更，调整最早比较期的相关报表项目及期初权益</div>
+        <div class="l">不得把全部差额简单计入首次执行当期的公允价值变动损益</div>
+      </div>
+      <p style="margin-top:8px">具体分录取决于历史成本、权益法累计变动、公允价值轨迹和比较期间范围，应逐项测算。</p>
+    </div>
+  </div>
+
+  <div class="sect"><div class="sect-title">首执前数据准备（四件事）</div></div>
+  <table>
+    <tr><th>事项</th><th>内容</th><th>常见难点</th></tr>
+    <tr><td>损益分类映射表</td><td>全量损益科目（含明细、辅助核算）逐项映射至五类</td><td>跨类别科目：利息收支、减值、汇兑、其他收益、处置损益、营业外收支</td></tr>
+    <tr><td>减值分类归集</td><td>信用/资产减值按经营类、投资类拆分</td><td>保证金、其他应收款等边界科目归属</td></tr>
+    <tr><td>按性质费用数据</td><td>附注补充按性质披露：原材料、职工薪酬、折旧、摊销</td><td>多数系统无按性质归集维度，需建维度</td></tr>
+    <tr><td>MPM 盘点</td><td>盘点业绩发布会/路演/定期报告/ESG 等公开资料中的损益类合计项</td><td>市场部门与投资者关系职能的口径控制</td></tr>
+  </table>
+</section>
+
+<!-- ================= 页7 实施路线图 ================= -->
+<section class="page" id="p7" role="tabpanel" aria-labelledby="tab-p7">
+  <div class="card"><h4>通用提示</h4><p>下表以<b>其他境内上市企业（2029-01-01实施）</b>为例；境内外同时上市，以及在境外上市并采用国际财务报告会计准则或企业会计准则编报的企业，应在2026年内完成分类设计并准备按新口径重述2026年比较信息；执行企业会计准则的非上市企业自2030年起实施。</p></div>
+  <table>
+    <tr><th>阶段</th><th>时间区间</th><th>关键工作</th><th>里程碑</th></tr>
+    <tr><td><b>一、政策研究与决策</b></td><td>2026 Q3—Q4</td><td>研读准则正式全文并跟踪应用指南；影响评估（分类难度、系统改造量、披露增量）；是否提前执行决策</td><td>《实施影响评估报告》；管理层立项批复</td></tr>
+    <tr><td><b>二、方案设计</b></td><td>2027 全年</td><td>损益分类映射表设计；特定主要业务活动判断（集团层面）；附注与 MPM 披露框架；系统改造方案</td><td>《损益分类映射表 V1.0》《披露框架方案》评审通过</td></tr>
+    <tr><td><b>三、系统与数据建设</b></td><td>2028 H1</td><td>科目体系调整；报表公式与取数逻辑改造；按性质费用归集；减值分类数据补建；MPM 调节表模板</td><td>新利润表模板系统联调通过</td></tr>
+    <tr><td><b>四、并行测试</b></td><td>2028 H2</td><td>按新口径模拟编制中报及年度试算；与审计师预沟通；内控制度修订落地；全员培训</td><td>试算差异分析报告；内控更新上线</td></tr>
+    <tr><td><b>五、正式切换</b></td><td>2029-01-01 起</td><td>正式按新准则编报；重述 2028 比较数据；首次执行调节披露；首份新准则年报</td><td>2029 一季报起按新格式编报；年报完成调节披露</td></tr>
+  </table>
+  <div class="grid2">
+    <div class="card"><h4>关键节奏依赖</h4>
+      <ul>
+        <li>实施方案与<b>财政部配套文件</b>发布节奏强相关（应用指南、报表格式、会计科目体系），方案设计须保留弹性（模板可配置、规则参数化）</li>
+        <li>A+H 企业境内（CAS 30 新版）与境外（IFRS 18）口径趋同但细节可能有差异，须建双口径差异调节机制</li>
+      </ul>
+    </div>
+    <div class="card"><h4>建议先行的低成本动作</h4>
+      <ul>
+        <li>2026 年内完成损益分类映射表初版（不依赖系统）</li>
+        <li>MPM 全口径清单与口径定义文件化</li>
+        <li>跟踪首批企业（2027 实施）的实务案例与监管反馈</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 页8 风险与难点 ================= -->
+<section class="page" id="p8" role="tabpanel" aria-labelledby="tab-p8">
+  <div class="sect"><div class="sect-title">风险控制与内控适配（六项）</div></div>
+  <div class="grid2">
+    <div class="card"><h4>① 分类判断风险</h4><p>五分类涉及大量职业判断（特定资产、纯筹资/非纯筹资负债、汇兑、套期衍生、混合合同），误分类直接扭曲"经营利润"。→ 判断底稿制度、财务负责人审批、与审计师提前达成一致。</p></div>
+    <div class="card"><h4>② MPM 合规风险</h4><p>未识别 MPM、调节表所得税/少数股东影响披露不当 → 建立 MPM 全口径清单、统一口径定义、披露前合规审核。</p></div>
+    <div class="card"><h4>③ 数据与系统风险</h4><p>追溯重述质量、按性质费用缺维度、减值分类底账不全 → 数据治理前置，校验资产负债平衡、现金流勾稽及损益重分类前后净利润；采用第七十条政策变更的企业另行核对计量影响。</p></div>
+    <div class="card"><h4>④ 比较信息风险</h4><p>首个执行年度及中期财务报表须披露最近可比期间利润表调节信息 → 建议切换前一年即按新口径并行打标签，避免事后大范围手工重述。</p></div>
+    <div class="card"><h4>⑤ 监管与审计协同</h4><p>证监会/交易所报送规则与 XBRL 未同步 → 政策跟踪机制，与主管财政/监管部门、主审所保持沟通。</p></div>
+    <div class="card"><h4>⑥ 内控适配</h4><p>映射表维护审批、MPM 披露审核、附注分解复核纳入内控矩阵与不相容职责分离设计。</p></div>
+  </div>
+
+  <div class="sect"><div class="sect-title">企业容易忽略的十个实务难点</div></div>
+  <table>
+    <tr><th>#</th><th>难点</th><th>要点</th></tr>
+    <tr><td>1</td><td>"模糊处理"存量披露体检</td><td>"其他"科目扎堆、大额杂项并入单行、关键信息藏于长段落的存量披露形式可能违规</td></tr>
+    <tr><td>2</td><td>按性质补充披露费用</td><td>系统多按功能归集，缺"原材料/职工薪酬/折旧/摊销"性质维度，改造常被低估</td></tr>
+    <tr><td>3</td><td>利息收支明细化拆分</td><td>财务费用混合核算；资本化利息、租赁负债利息（筹资类）与经营负债利息（非纯筹资仅利息部分）边界需判断</td></tr>
+    <tr><td>4</td><td>减值损失类别拆分</td><td>保证金、其他应收款等边界科目归属需专项判断</td></tr>
+    <tr><td>5</td><td>汇兑差额分类</td><td>原则上跟随产生项目类别；同一笔非纯筹资交易负债的汇兑差额不得分列不同类别；逐项评估“不必要的额外成本或努力”</td></tr>
+    <tr><td>6</td><td>特定主要业务活动：集团 vs 单体</td><td>集团合并层面与单一主体判断可能不同，控股平台型集团易错</td></tr>
+    <tr><td>7</td><td>MPM“公开资料”范围</td><td>企业正式公开的业绩发布会PPT、公众号文章、ESG报告等书面资料中的损益类合计项可能触发；非公开或非企业正式发布的调研纪要不能一概认定</td></tr>
+    <tr><td>8</td><td>报表格式未发布的执行风险</td><td>过早按征求意见稿格式固化系统可能返工 → 规则参数化、模板可配置</td></tr>
+    <tr><td>9</td><td>中报衔接节奏</td><td>新准则适用中期报表（CAS 32 另有规定除外），首批企业 2027 中报即须新口径，快于年报</td></tr>
+    <tr><td>10</td><td>权益法选择权时间窗口</td><td>仅在首次执行时可用，错过不再有类似机会，符合条件企业须提前评估利弊</td></tr>
+  </table>
+</section>
+
+<!-- ================= 页9 依据与提示 ================= -->
+<section class="page" id="p9" role="tabpanel" aria-labelledby="tab-p9">
+  <div class="sect"><div class="sect-title">资料来源（官方原文优先）</div></div>
+  <table>
+    <tr><th>来源</th><th>文号/日期</th><th>用途</th></tr>
+    <tr><td><a href="https://kjs.mof.gov.cn/zhengcefabu/202608/t20260805_3994927.htm" target="_blank" rel="noopener noreferrer">财政部：《企业会计准则第30号——财务报表列报》正式文本</a></td><td>财会〔2026〕11号；2026-07-24印发，2026-08-05发布</td><td>本手册条文级首要依据（全文71条）</td></tr>
+    <tr><td><a href="https://kjs.mof.gov.cn/zhengcejiedu/202608/t20260805_3994932.htm" target="_blank" rel="noopener noreferrer">财政部会计司答记者问</a></td><td>2026-08-05</td><td>修订背景、四大核心内容、实施步骤、配套保障</td></tr>
+    <tr><td><a href="https://kjs.mof.gov.cn/gongzuotongzhi/202512/t20251230_3980830.htm" target="_blank" rel="noopener noreferrer">财政部办公厅征求意见函及附件</a></td><td>财办会〔2025〕51号；2025-12-29</td><td>仅用于识别正式稿变化及在正式格式发布前参考配套利润表征求意见稿</td></tr>
+    <tr><td><a href="https://kjs.mof.gov.cn/zt/kjzzss/kuaijizhunzeshishi/200806/t20080618_46218.htm" target="_blank" rel="noopener noreferrer">2014年《企业会计准则第30号》</a></td><td>财会〔2014〕7号</td><td>新旧准则逐项对照</td></tr>
+    <tr><td><a href="https://www.ifrs.org/issued-standards/list-of-standards/ifrs-18-presentation-and-disclosure-in-financial-statements/" target="_blank" rel="noopener noreferrer">IFRS Foundation：IFRS 18</a></td><td>2024-04发布；2027-01-01生效</td><td>国际趋同参照；不替代中国正式准则</td></tr>
+  </table>
+
+  <div class="sect"><div class="sect-title">重要提示</div></div>
+  <div class="card">
+    <ul>
+      <li>本手册条文级内容以<b>财会〔2026〕11号正式文本</b>为依据；征求意见稿仅用于差异识别和配套格式发布前的有限参考。</li>
+      <li>标注"<span class="tag t-warn">待确认</span>"的事项（现金流量表细节、营业外收支归集、正式格式行次等）属配套文件发布后方可最终确认的范围。</li>
+      <li>标注"推断/参照"的内容（IFRS 18 国际规则与中国细则衔接的判断）仅供参考，不构成已证实事实。</li>
+      <li>本手册仅供内部学习与决策参考，不构成专业意见；具体会计处理请结合企业实际并经会计师事务所确认。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>配套文件跟踪清单</h4>
+    <table>
+      <tr><th>待发布文件</th><th>关注点</th></tr>
+      <tr><td>四张报表格式文件</td><td>利润表行次、现金流量表分类、资产负债表单列项</td></tr>
+      <tr><td>新列报准则应用指南</td><td>五分类填列规则、MPM 披露示例</td></tr>
+      <tr><td>会计科目体系</td><td>科目—报表项目对应关系</td></tr>
+      <tr><td>证监会/交易所年报格式与 XBRL</td><td>监管报送衔接</td></tr>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <div>本速查手册由《CAS 30 新旧准则差异研究报告》（2026-08-05）提炼并依据财政部正式文本复核；research\ 目录保留征求意见稿及起草说明。</div>
+  <div>CAS 30 财务报表列报 · 新旧准则差异速查手册 ｜ 正式稿核校：2026-08-05</div>
+</footer>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var pages = document.querySelectorAll('.page');
+  var q = document.getElementById('q');
+  var marks = [];
+  function show(id){
+    tabs.forEach(function(t){
+      var selected = t.getAttribute('data-page')===id;
+      t.classList.toggle('active', selected);
+      t.setAttribute('aria-selected', String(selected));
+    });
+    pages.forEach(function(p){
+      var selected = p.id===id;
+      p.classList.toggle('active', selected);
+      p.setAttribute('aria-hidden', String(!selected));
+    });
+    if(location.hash !== '#'+id){ try{ history.replaceState(null,'','#'+id); }catch(e){} }
+    clearHL();
+    if(q && q.value.trim()){ doSearch(); }
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.getAttribute('data-page')); window.scrollTo({top:0, behavior:'smooth'}); });
+  });
+  if(location.hash){
+    var h = location.hash.slice(1);
+    if(document.getElementById(h)){ show(h); }
+  }
+  pages.forEach(function(p){ p.setAttribute('aria-hidden', String(!p.classList.contains('active'))); });
+
+  /* 当前页关键词高亮搜索 */
+  function clearHL(){
+    marks.forEach(function(m){ var parent=m.parentNode; parent.replaceChild(document.createTextNode(m.textContent), m); parent.normalize(); });
+    marks = [];
+  }
+  function doSearch(){
+    clearHL();
+    var kw = q.value.trim();
+    if(!kw) return;
+    var active = document.querySelector('.page.active');
+    var walker = document.createTreeWalker(active, NodeFilter.SHOW_TEXT, { acceptNode:function(n){
+      if(n.parentNode && (n.parentNode.nodeName==='SCRIPT'||n.parentNode.nodeName==='STYLE'||n.parentNode.classList && n.parentNode.classList.contains('tag'))) return NodeFilter.FILTER_REJECT;
+      return n.textContent.indexOf(kw)!==-1 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }});
+    var n, nodes=[], first=null, esc = kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    var re = new RegExp(esc,'g');
+    while(n = walker.nextNode()){ nodes.push(n); }
+    nodes.forEach(function(n){
+      var frag = document.createDocumentFragment();
+      var last=0, m, cur=n.textContent;
+      while(m = re.exec(cur)){
+        if(m.index>last) frag.appendChild(document.createTextNode(cur.slice(last,m.index)));
+        var mk=document.createElement('mark'); mk.className='hl'; mk.textContent=m[0]; frag.appendChild(mk); marks.push(mk);
+        last = m.index + m[0].length;
+        if(!first) first = mk;
+      }
+      if(last<cur.length) frag.appendChild(document.createTextNode(cur.slice(last)));
+      if(frag.childNodes.length){ n.parentNode.replaceChild(frag, n); }
+    });
+    if(first){ first.scrollIntoView({block:'center', behavior:'smooth'}); }
+  }
+  var timer=null;
+  q.addEventListener('input', function(){ clearTimeout(timer); timer=setTimeout(doSearch, 250); });
+  q.addEventListener('keydown', function(e){ if(e.key==='Enter'){ clearTimeout(timer); doSearch(); } });
+})();
+</script>
+</body>
+</html>
